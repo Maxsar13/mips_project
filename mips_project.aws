@@ -1,0 +1,11 @@
+[Version]
+Version=17.0
+[Designs]
+pipelined_simd=.\pipelined_simd\pipelined_simd.adf
+[Browser]
+sort=order
+mode=none
+[Order]
+order=1
+[Expand]
+pipelined_simd=1

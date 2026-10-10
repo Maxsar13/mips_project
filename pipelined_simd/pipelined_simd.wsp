@@ -1,0 +1,7 @@
+[CACHESIMPLE|Aldec.SymbolsCommands.7]
+Built-in symbols=0
+pipelined_simd=0
+[COMPILESTATUS|.\src\mips_alu.sv]
+FileTimeLow=2654860800
+FileTimeHigh=31283325
+Status=Modified
