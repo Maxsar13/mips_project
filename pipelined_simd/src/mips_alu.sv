@@ -15,10 +15,16 @@ module alu(
 	logic [127:0] imm_load;	
 	
 	//Used for multi-add instructions  
-	logic [31:0] mask_multi//Mask if needed
+	logic [31:0] mask_multi;//Mask if needed
 	logic [127:0] multi_one;
 	logic [127:0] multi_two;
 	logic [127:0] product;
+	
+	//Used for register instructions
+	logic [31:0] broadcast;
+	assign broadcast = 32'hFFFFFFFF;
+	
+	logic total[127:0];
 	
 	
 	
@@ -45,23 +51,53 @@ module alu(
 					end
 					rd_out = instr[21] ? rs1 - product : product + rs1;		//If instr[21] is 1, we subtract, else we add							
 				end	
-			2'b11: begin //R3 instructions	   
+			2'b11: begin //R3 instructions
+				rd_out = 128'd0;
 				case(instr[19:15]) inside
-					5'b?0000:
+					5'b?0000: begin	//NOP instruction
+						write_en = 1'b0;
+						end
 					5'b?0001:
-					5'b?0010:
+					5'b?0010: begin //Add word unsigned
+						rd_out = {rs1[127:96] + rs2[127:96], rs1[95:64] + rs2[95:64], rs1[63:32] + rs2[63:32], rs1[31:0] + rs2[31:0]};
+						write_en = 1'b1;
+						end
 					5'b?0011:
 					5'b?0100:
-					5'b?0101:
-					5'b?0110:
-					5'b?0111:
-					5'b01000:
+					5'b?0101: begin //AND instruction 
+						rd_out = rs2 && rs1;
+						end
+					5'b?0110: begin //broadcast word
+						broadcast = broadcast && rs1[31:0];
+						for(int i = 0; i < 4; i++) begin 
+							rd_out = rd_out || (128'(broadcast) << {i, 5'b00000});
+						end
+						write_en = 1'b1;
+						end
+					5'b?0111: begin //max signed word
+						rd_out[31:0] = ($signed(rs1[31:0]) > ($signed(rs2[31:0])) ? rs1[31:0] : rs2[31:0]; 
+						rd_out[63:32] = ($signed(rs1[63:32]) > ($signed(rs2[63:32])) ? rs1[63:32] : rs2[63:32]; 
+						rd_out[95:64] = ($signed(rs1[95:64]) > ($signed(rs2[95:64])) ? rs1[95:64] : rs2[95:64]; 
+						rd_out[127:96] = ($signed(rs1[127:96]) > ($signed(rs2[127:96])) ? rs1[127:96] : rs2[127:96]; 
+						write_en = 1'b1;
+						end
+					5'b01000: begin //min signed word
+						rd_out[31:0] = ($signed(rs1[31:0]) < ($signed(rs2[31:0])) ? rs1[31:0] : rs2[31:0]; 
+						rd_out[63:32] = ($signed(rs1[63:32]) < ($signed(rs2[63:32])) ? rs1[63:32] : rs2[63:32]; 
+						rd_out[95:64] = ($signed(rs1[95:64]) < ($signed(rs2[95:64])) ? rs1[95:64] : rs2[95:64]; 
+						rd_out[127:96] = ($signed(rs1[127:96]) < ($signed(rs2[127:96])) ? rs1[127:96] : rs2[127:96]; 
+						write_en = 1'b1;
 					5'b?1001:
 					5'b?1010:
-					5'b?1011:
+					5'b?1011: begin //OR Instruction
+						rd_out = rs2 || rs1;
+						end
 					5'b?1100:
 					5'b?1101:
-					5'b?1110:
+					5'b?1110: begin //Subtract from word unsigned
+						rd_out = {rs2[127:96] - rs1[127:96], rs2[95:64] - rs1[95:64], rs2[63:32] - rs1[63:32], rs2[31:0] - rs1[31:0]};
+						write_en = 1'b1;
+						end
 					5'b?1111:
 					
 			end		
