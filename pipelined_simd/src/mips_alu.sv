@@ -19,6 +19,7 @@ module alu(
 	logic [127:0] multi_one;
 	logic [127:0] multi_two;
 	logic [127:0] product;
+	logic [64:0] sum;
 	
 	//Used for register instructions
 	logic [31:0] broadcast;
@@ -40,21 +41,30 @@ module alu(
 				rd_out = (rd_in && ~imm_load) || (128'instr[20:5] << shift);   //Using mask to replace bits
 				wr_addr = instr[4:0]; 	  //Setting write address to rd
 			end
-			2'b10: begin   //Multi Intstruction
-					mask_multi = instr[22] ? 32'hFFFFFFFF : instr[20] ? 32'hFFFF0000 : 32'h0000FFFF; //Shifting masks based off of long/int and high/low
-					for(int i = 0; i < 4; i = instr[22] ? i = i + 2 : i++) begin //For loop as theres always 4 segments we multiply
+			2'b10: begin
+				//Multi Intstruction
+				mask_multi = instr[22] ? (instr[20] ? 64'hFFFFFFFF_00000000 : 64'h00000000_FFFFFFFF) : (instr[20] ? 64'h00000000_FFFF0000 : 64'h00000000_0000FFFF);
+					for(int i = 0; i < 4; i++) begin //For loop as theres always 4 segments we multiply
 						if(instr[22]) begin			//For long multiplications										
-							multi_one = rs3 && (128'mask_multi << {i, 6'b000000});
-							multi_two = rs2 && (128'mask_multi << {i, 6'b000000)); 
+							if(i % 2 == 0) begin
+								multi_one = ((rs3 >> {i, 5'b00000}) & mask_multi) >> (instr[20] ? 32 : 0);
+								multi_two = ((rs2 >> {i, 5'b00000}) & mask_multi) >> (instr[20] ? 32 : 0);
+								product = $signed(multi_one[31:0]) * $signed(multi_two[31:0]); 
+								sum = instr[21] ? $signed(rs1[i * 32 +: 64]) - product : $signed(rs1[i * 32+:64]) + product;
+								rd_out[i*32+:64] = (sum[64] != sum[63]) ? (sum[64] ? 64'h80000000_00000000 : 64'h7FFFFFFF_FFFFFFFF) : sum[63:0];
+							end
 						end
-						else begin					//For int multiplications	
-							multi_one = rs3 && (128'mask_multi << {i, 5'b00000});
-							multi_two = rs2 && (128'mask_multi << {i, 5'b00000)); 
-						end
-						product = product || (multi_one * multi_two);  //ORing products so it keeps the values of each chunk each iteration
+						else begin
+							multi_one = ((rs3 >> {i, 5'b00000}) & mask_multi) >> (instr[20] ? 16 : 0);
+							multi_two = ((rs2 >> {i, 5'b00000}) & mask_multi) >> (instr[20] ? 16 : 0);
+							product = $signed(multi_one[15:0]) * $signed(multi_two[15:0]); 
+							sum = instr[21] ? $signed(rs1[i * 32 +: 32]) - product : $signed(rs1[i * 32+:32]) + product;
+							rd_out[i*32+:32] = (sum[32] != sum[31]) ? (sum[32] ? 32'h8000_0000 : 32'h7FFF_FFFF) : sum[31:0];	
+						end				
 					end
-					rd_out = instr[21] ? rs1 - product : product + rs1;		//If instr[21] is 1, we subtract, else we add							
-				end	
+				end
+				
+				
 			2'b11: begin //R3 instructions
 				rd_out = 128'd0;
 				case(instr[18:15]) inside
@@ -166,7 +176,11 @@ module alu(
 							end	
 							write_en = 1'b1;
 						end	
-			end		
+					default: begin
+						rd_out = 128'd0; 
+						write_en = 1'b0;
+					end
+				endcase		
 		endcase
 	end			
 endmodule
