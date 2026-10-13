@@ -22,9 +22,13 @@ module alu(
 	
 	//Used for register instructions
 	logic [31:0] broadcast;
-	assign broadcast = 32'hFFFFFFFF;
+	assign broadcast = 32'hFFFFFFFF;  
 	
-	logic total[127:0];
+	logic [15:0] op;
+	logic [16:0] saturated_op;
+	
+	logic [31:0] rotate; 
+	logic [31:0] latch;
 	
 	
 	
@@ -53,53 +57,115 @@ module alu(
 				end	
 			2'b11: begin //R3 instructions
 				rd_out = 128'd0;
-				case(instr[19:15]) inside
-					5'b?0000: begin	//NOP instruction
+				case(instr[18:15]) inside
+					4'b0000: begin	//NOP instruction
 						write_en = 1'b0;
 						end
-					5'b?0001:
-					5'b?0010: begin //Add word unsigned
+					4'b0001: begin //Absolute difference of bytes
+						for(int i = 0; i < 128; i = i + 16) begin
+							op = rs1[i+:16] - rs2[i+:16];
+							op = sub[15] ? (~sub + 1) : sub;
+							rd_out[i+:16] = sub;
+						end	
+						write_en = 1'b1;
+						end
+					4'b0010: begin //Add word unsigned
 						rd_out = {rs1[127:96] + rs2[127:96], rs1[95:64] + rs2[95:64], rs1[63:32] + rs2[63:32], rs1[31:0] + rs2[31:0]};
 						write_en = 1'b1;
 						end
-					5'b?0011:
-					5'b?0100:
-					5'b?0101: begin //AND instruction 
+					4'b0011: begin //count 1s in word
+						int count;
+						for(int i = 0; i < 128; i = i + 32)
+							begin
+								count = rs1[i:i+1] + rs1[i+2:i+3] + rs1[i+4:i+5] + rs1[i+6:i+7] + rs1[i+8:i+9] + rs1[i+10:i+11] + rs1[i+12:i+13] + rs1[i+14:i+15] + rs1[i+16:i+17] + rs1[i+18:i+19] + rs1[i+20:i+21] + rs1[i+22:i+23] + rs1[i+24:i+25] + rs1[i+26:i+27] + rs1[i+28:i+29] + rs1[i+30:i+31]; 
+								rd_out[i+:32] = count;
+							end	
+						write_en = 1'b1;
+						end
+					4'b0100: begin	//Add Halfword saturated 
+						for(int i = 15; i < 128; i = i + 16)
+							begin
+								saturated_op = $signed(rs2[i+:16]) + $signed(rs1[i+:16]);
+								saturated_op = (saturated_op[16] != saturated_op[15]) ? (saturated_op[16] ? 16'h8000 : 16'h7FFF) : saturated_op;
+								rd_out[i+:16] = saturated_op[15:0];
+							end	
+							write_en = 1'b1;
+						end
+					4'b0101: begin //AND instruction 
 						rd_out = rs2 && rs1;
 						end
-					5'b?0110: begin //broadcast word
+					4'b0110: begin //broadcast word
 						broadcast = broadcast && rs1[31:0];
 						for(int i = 0; i < 4; i++) begin 
 							rd_out = rd_out || (128'(broadcast) << {i, 5'b00000});
 						end
 						write_en = 1'b1;
 						end
-					5'b?0111: begin //max signed word
+					4'b0111: begin //max signed word
 						rd_out[31:0] = ($signed(rs1[31:0]) > ($signed(rs2[31:0])) ? rs1[31:0] : rs2[31:0]; 
 						rd_out[63:32] = ($signed(rs1[63:32]) > ($signed(rs2[63:32])) ? rs1[63:32] : rs2[63:32]; 
 						rd_out[95:64] = ($signed(rs1[95:64]) > ($signed(rs2[95:64])) ? rs1[95:64] : rs2[95:64]; 
 						rd_out[127:96] = ($signed(rs1[127:96]) > ($signed(rs2[127:96])) ? rs1[127:96] : rs2[127:96]; 
 						write_en = 1'b1;
 						end
-					5'b01000: begin //min signed word
+					4'b1000: begin //min signed word
 						rd_out[31:0] = ($signed(rs1[31:0]) < ($signed(rs2[31:0])) ? rs1[31:0] : rs2[31:0]; 
 						rd_out[63:32] = ($signed(rs1[63:32]) < ($signed(rs2[63:32])) ? rs1[63:32] : rs2[63:32]; 
 						rd_out[95:64] = ($signed(rs1[95:64]) < ($signed(rs2[95:64])) ? rs1[95:64] : rs2[95:64]; 
 						rd_out[127:96] = ($signed(rs1[127:96]) < ($signed(rs2[127:96])) ? rs1[127:96] : rs2[127:96]; 
 						write_en = 1'b1;
-					5'b?1001:
-					5'b?1010:
-					5'b?1011: begin //OR Instruction
-						rd_out = rs2 || rs1;
+					4'b1001: begin	//Multiply low unsigned
+						for(int i = 0; i < 128; i = i + 32)
+							begin
+								rd_out[i+:32] = 32'(rs1[i+:16] * rs2[i+:16]);
+							end
+						write_en = 1'b1;
 						end
-					5'b?1100:
-					5'b?1101:
-					5'b?1110: begin //Subtract from word unsigned
+					4'b1010: begin //multiply low by constant unsigned
+						for(int i = 0; i < 128; i = i + 32)
+							begin
+								rd_out[i+:32] = 32'(rs1[i+:16] * instr[14:10]);
+							end
+						write_en = 1'b1;							   
+						end
+					4'b1011: begin //OR Instruction
+						rd_out = rs2 || rs1;
+						write_en = 1'b1;
+						end
+					4'b1100: begin //Count leading zeroes in words 
+						for(int i = 0; i < 128; i = i + 32)
+							begin
+								int count = 0;
+								int j = i + 32;
+								while(count != 32 || rs1[j] == 1) begin
+									count++;
+									j--;
+								end
+								rd_out[i+:32] = count;
+							end						   
+							write_en = 1'b1;						
+						end
+					4'b1101: begin //Rotate bits in word
+						for(int i = 0; i < 128; i = i + 32)
+							begin
+								latch = rs1[i +: 32];
+								latch = (latch << (32 - instr[14:10]));
+								rd_out[i +: 32] = latch | (rs1[i:prev] >> rs2[14:10]);	
+							end
+						end
+					4'b1110: begin //Subtract from word unsigned
 						rd_out = {rs2[127:96] - rs1[127:96], rs2[95:64] - rs1[95:64], rs2[63:32] - rs1[63:32], rs2[31:0] - rs1[31:0]};
 						write_en = 1'b1;
 						end
-					5'b?1111:
-					
+					4'b1111: begin //subtract from halfword saturated
+						for(int i = 0; i < 128; i = i + 16)
+							begin
+								saturated_op = $signed(rs2[i+:16]) - $signed(rs1[i+:16]);
+								saturated_op = (saturated_op[16] != saturated_op[15]) ? (saturated_op[16] ? 16'h8000 : 16'h7FFF) : saturated_op;
+								rd_out[i+:16] = saturated_op[15:0];
+							end	
+							write_en = 1'b1;
+						end	
 			end		
 		endcase
 	end			
