@@ -92,9 +92,7 @@ module alu(
 						end
 					4'b0001: begin //Absolute difference of bytes
 						for(int i = 0; i < 128; i = i + 8) begin
-							op = rs1[i+:8] - rs2[i+:8];
-							op = op[7] ? (~op + 1) : op;
-							rd_out[i+:8] = op;
+							rd_out[i+:8] = (rs1[i+:8] >= rs2[i+:8]) ? (rs1[i+:8] - rs2[i+:8]) : (rs2[i+:8] - rs1[i+:8]);
 						end	
 						write_en = 1'b1;
 					end
@@ -114,7 +112,7 @@ module alu(
 						write_en = 1'b1;
 					end
 					4'b0100: begin	//Add Halfword saturated 
-						for(int i = 15; i < 128; i = i + 16)
+						for(int i = 0; i < 128; i = i + 16)
 							begin
 								saturated_op = $signed(rs2[i+:16]) + $signed(rs1[i+:16]);
 								saturated_op = (saturated_op[16] != saturated_op[15]) ? (saturated_op[16] ? 16'h8000 : 16'h7FFF) : saturated_op;
@@ -122,13 +120,13 @@ module alu(
 							end	
 						write_en = 1'b1;
 					end
-					4'b0101: begin //AND instruction 
-						rd_out = rs2 && rs1;
+					4'b0101: begin //bitwise AND instruction 
+						rd_out = rs2 & rs1;
 					end
 					4'b0110: begin //broadcast word
-						broadcast = broadcast && rs1[31:0];
+						broadcast = rs1[31:0];
 						for(int i = 0; i < 4; i++) begin 
-							rd_out = rd_out || (128'(broadcast) << {i, 5'b00000});
+							rd_out = rd_out | (128'(broadcast) << {i, 5'b00000});
 						end
 						write_en = 1'b1;
 					end
@@ -160,18 +158,17 @@ module alu(
 							end
 						write_en = 1'b1;							   
 					end
-					4'b1011: begin //OR Instruction
-						rd_out = rs2 || rs1;
+					4'b1011: begin // bitwise OR Instruction
+						rd_out = rs2 | rs1;
 						write_en = 1'b1;
 					end
 					4'b1100: begin //Count leading zeroes in words 
 						for(int i = 0; i < 128; i = i + 32)
 							begin
-								int count = 0;
-								int j = i + 32;
-								while(count != 32 || rs1[j] == 1) begin
+								int count;
+								count = 0;
+								while ((count < 32) && (rs1[i + 31 - count] != 1'b1)) begin
 									count++;
-									j--;
 								end
 								rd_out[i+:32] = count;
 							end						   
@@ -182,7 +179,7 @@ module alu(
 							begin
 								latch = rs1[i +: 32];
 								latch = (latch << (32 - instr[14:10]));
-								rd_out[i +: 32] = latch | (rs1[i+:32] >> rs2[14:10]);	
+								rd_out[i +: 32] = latch | (rs1[i+:32] >> instr[14:10]);	
 							end
 					end
 					4'b1110: begin //Subtract from word unsigned
