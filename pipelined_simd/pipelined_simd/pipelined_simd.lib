@@ -1,1 +1,38 @@
+timestamp=1792901018325
 
+[~A]
+E:/ESE 345 Project/mips_project/pipelined_simd/src/mips_alu.sv=0*15384*17791
+E:/ESE 345 Project/mips_project/pipelined_simd/src/mips_alu_tb.sv=0*9994*14420
+LastVerilogToplevel=mips_alu_tb
+ModifyID=4
+Version=74
+
+[~MFT]
+0=6|0pipelined_simd.mgf|17791|7890
+1=4|1pipelined_simd.mgf|28401|17090
+3=8|3pipelined_simd.mgf|70844|39278
+
+[$root]
+A/$root=22|||1*28027
+BinW64/$root=3*62929
+SLP=3*63044
+Version=17.0.292.10043 (Windows64)|0000000b789cd3f53752d02d2e33ca3632060010ad02e7|c73a565f2ade592f8ac1c68f484c9216a1ff7c08676f012583396d0e1553db18
+
+[alu]
+A/alu=22|../src/mips_alu.sv|1|1*28401
+BinW64/alu=3*63128
+R=../src/mips_alu.sv|1
+SLP=3*70844
+Version=17.0.292.10043 (Windows64)|0000000b789cd3f53752d02d2e33ca3632060010ad02e7|fdc9c85601beb4171a6a25c637e2168efe79b541d28927b7e21be57a489ec739
+
+[mips_alu_tb]
+A/mips_alu_tb=22|../src/mips_alu_tb.sv|5|1*17090
+BinW64/mips_alu_tb=3*39278
+R=../src/mips_alu_tb.sv|5
+SLP=3*51429
+Version=17.0.292.10043 (Windows64)|0000000b789cd3f53752d02d2e33ca3632060010ad02e7|30113993820f675f4a1c0b1907dedc16d08091ba56ea63ea7df4360bcc8cc62a129c2ed8f8bee58321e1c41d75a2ae39
+
+[~U]
+$root=12|0*14950|
+alu=12|0*15132|
+mips_alu_tb=12|0*9333||0x10

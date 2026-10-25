@@ -1,1 +1,2 @@
 .\src\mips_alu.sv
+.\src\mips_alu_tb.sv

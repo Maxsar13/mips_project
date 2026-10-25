@@ -1,0 +1,1 @@
+-o "E:/ESE 345 Project/mips_project/pipelined_simd/compile" -lc "E:/ESE 345 Project/mips_project/library.cfg" -fl "E:/ESE 345 Project/mips_project/pipelined_simd/projlib.cfg" -pli "C:/Aldec/Active-HDL-Student-Edition/bin/systf.dll" -O2 -sve -msg 5 -sv2k23 -work pipelined_simd "E:/ESE 345 Project/mips_project/pipelined_simd/src/mips_alu.sv" 

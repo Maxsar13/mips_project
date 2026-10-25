@@ -1,0 +1,980 @@
+alog -O2 -sve -msg 5 -sv2k23 -work pipelined_simd $dsn/src/mips_alu.sv
+# Unit top modules: alu.
+# Compile success 0 Errors 0 Warnings  Analysis time: 0[s].
+# done
+alog -O2 -sve -msg 5 -sv2k23 -work pipelined_simd $dsn/src/mips_alu_tb.sv
+# Unit top modules: mips_alu_tb.
+# Compile success 0 Errors 0 Warnings  Analysis time: 0[s].
+# done
+alog -O2 -sve -msg 5 -sv2k23 -work pipelined_simd $dsn/src/mips_alu_tb.sv
+# Unit top modules: mips_alu_tb.
+# Compile success 0 Errors 0 Warnings  Analysis time: 1[s].
+# done
+# ELBREAD: Elaboration process.
+# ELBREAD: Warning: ELBREAD_0049 The "alu" design unit does not have a time unit/precision defined but other design units do.
+# ELBREAD: Elaboration time 0.0 [s].
+asim -O5 +access +r +m+mips_alu_tb mips_alu_tb
+# ELBREAD: Elaboration process.
+# ELBREAD: Warning: ELBREAD_0049 The "alu" design unit does not have a time unit/precision defined but other design units do.
+# ELBREAD: Elaboration time 0.0 [s].
+# VSIM: Stack memory: 32MB
+# VSIM: Retval memory: 32MB
+# 
+# KERNEL: Main thread initiated.
+# KERNEL: Kernel process initialization phase.
+# ELAB2: Elaboration final pass...
+# KERNEL: PLI/VHPI kernel's engine initialization done.
+# PLI: Loading library 'C:\Aldec\Active-HDL-Student-Edition\bin\systf.dll'
+# ELAB2: Create instances ...
+# KERNEL: Time resolution set to 1ps.
+# ELAB2: Create instances complete.
+# SLP: Started
+# SLP: Elaboration phase ...
+# SLP: Elaboration phase ... done : 0.6 [s]
+# SLP: Generation phase ...
+# SLP: Generation phase ... done : 1.9 [s]
+# SLP: Finished : 2.6 [s]
+# SLP: 0 primitives and 3 (100.00%) other processes in SLP
+# SLP: 106 (100.00%) signals in SLP and 0 interface signals
+# ELAB2: Elaboration final pass complete - time: 2.8 [s].
+# KERNEL: SLP loading done - time: 0.2 [s].
+# KERNEL: Warning: You are using the Active-HDL Student Edition. The performance of simulation is running at a reduced rate.
+# KERNEL: Warning: Contact Aldec for available upgrade options - sales@aldec.com.
+# KERNEL: SLP simulation initialization done - time: 0.0 [s].
+# KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 4676 kB (elbread=427 elab2=4176 kernel=72 sdf=0)
+# KERNEL: ASDB file was created in location E:\ESE 345 Project\mips_project\pipelined_simd\src\wave.asdb
+#  11:30 PM, Saturday, October 24, 2026
+#  Simulation has been initialized
+run
+# KERNEL: FAIL R4 000 saturation instr=101883b
+# KERNEL:   rs1=7fffffff800000007fffffff80000000 rs2=00010001000100010001000100010001 rs3=00010001ffffffff00010001ffffffff rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=7fffffff800000007fffffff80000000 addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff7fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 000 random 0 instr=101883b
+# KERNEL:   rs1=46f8417d3658f11ba1aa78bef1225087 rs2=7b357b07e691b76d4623a8005c00b5be rs3=833a7187414be322646e520696bb02d3 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=7d87392e3e87f495857868bef0509821 addr=27 en=1
+# KERNEL:   actual   data=7d87392e3e87f4957fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 000 random 1 instr=101883b
+# KERNEL:   rs1=39629f6cd628044a3912958d90ec1596 rs2=c49c57abcf5e08dc889d73e9b29d2b42 rs3=a4483d1bb25e8cd9f0c41b39d0f00302 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=4e4f9d75d22bd6c64565f76e916e321a addr=27 en=1
+# KERNEL:   actual   data=4e4f9d757fffffff4565f76e7fffffff addr=27 en=1
+# KERNEL: FAIL R4 000 random 2 instr=101883b
+# KERNEL:   rs1=f5c85aff897688b051351fdcdaea24b7 rs2=328fb2e4da9501e431bf592307e74ff8 rs3=813c53adff28a1eb91bd55475515575a rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=dc942b1388c4a8fc6ee67791f63389e7 addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff6ee677917fffffff addr=27 en=1
+# KERNEL: FAIL R4 000 random 3 instr=101883b
+# KERNEL:   rs1=0a534dec20055759e82f989d1cbbebf0 rs2=62d7197294a0653debdf1c071d371d15 rs3=b1664028a0f384cb5284beaef6b39068 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=10b3c7bcef4c12b8e108d75f100e8c78 addr=27 en=1
+# KERNEL:   actual   data=10b3c7bcef4c12b87fffffff100e8c78 addr=27 en=1
+# KERNEL: FAIL R4 000 random 4 instr=101883b
+# KERNEL:   rs1=6f1962205f3dfd3a5c899eedda27b618 rs2=9934e6e604e4d5ef33bf8e9039f57d61 rs3=7533f01c022186dbcdb0163de9544d55 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=70a8434873261aaf52aef73d0007844d addr=27 en=1
+# KERNEL:   actual   data=70a8434873261aaf52aef73d80000000 addr=27 en=1
+# KERNEL: FAIL R4 000 random 5 instr=101883b
+# KERNEL:   rs1=22f76145bd40cb20c913bc32635b45df rs2=aa3d10e0c22979fa38ea823059800d04 rs3=d63076b937fd89dc49c9ceb61bdeac6c rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=2acad32584f667f8e14cea525f1b738f addr=27 en=1
+# KERNEL:   actual   data=2acad3257fffffff7fffffff5f1b738f addr=27 en=1
+# KERNEL: FAIL R4 000 random 6 instr=101883b
+# KERNEL:   rs1=7d276b7ab725a1d9668335729fe34321 rs2=08b2cd884439dd45eb8ad2f494368f95 rs3=8c541f0c3640a59c7bbb2fa40f5a95e9 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=770885dac368f0e55e2125c2ce79aabe addr=27 en=1
+# KERNEL:   actual   data=770885da7fffffff5e2125c27fffffff addr=27 en=1
+# KERNEL: FAIL R4 000 random 7 instr=101883b
+# KERNEL:   rs1=24a6714f42e6c6a1c07fddf67974e66c rs2=f6da314a4fe220ca5a4f47db9d984861 rs3=0e48a97d1fe29ddb47ef5f7a9bb7cd04 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=13fe5c713654b56fdb4c61546b0ab4f0 addr=27 en=1
+# KERNEL:   actual   data=13fe5c713654b56f7fffffff6b0ab4f0 addr=27 en=1
+# KERNEL: FAIL R4 000 random 8 instr=101883b
+# KERNEL:   rs1=acdd4cff818b4bd04a88271f4e898ecf rs2=e8601fd67a27c1ff35424473b03fa0f9 rs3=b38dd0888a70347e885f12edb261f33e rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=a6f616af800000004f979b965345e61d addr=27 en=1
+# KERNEL:   actual   data=7fffffff74d493524f979b965345e61d addr=27 en=1
+# KERNEL: FAIL R4 000 random 9 instr=101883b
+# KERNEL:   rs1=9b9f56f1d3f0d9c1c49ae988b07c2de5 rs2=8aac2c57a7cf8688138187b63efec9ff rs3=126f70bb1df4a3f7ef67dd9437e2e9ec rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=af25ca7eff9c3ef9d4c77cc0b5247bf9 addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff7fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 000 random 10 instr=101883b
+# KERNEL:   rs1=02a991715c4ae406913da35ef194b623 rs2=0fdd44f2731b581bf69c7424eaa04231 rs3=dbbfeff14bc1cdf426a15fbd91d93e01 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=fe5667434b117cc2bcacbdf2019cd654 addr=27 en=1
+# KERNEL:   actual   data=fe5667434b117cc27fffffff80000000 addr=27 en=1
+# KERNEL: FAIL R4 000 random 11 instr=101883b
+# KERNEL:   rs1=e5a2c7ab644f96ca037927fc5f75f75e rs2=779b4583a3711cb3f0569d22241a6fb6 rs3=1286bfcdc64cea47130dcd923f588a21 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=d4342e9261e02a6f16f2ff602c0679d4 addr=27 en=1
+# KERNEL:   actual   data=7fffffff61e02a6f16f2ff602c0679d4 addr=27 en=1
+# KERNEL: FAIL R4 000 random 12 instr=101883b
+# KERNEL:   rs1=c06e3be9fc5908862505fccb93f695a0 rs2=ff8ccd948d8dd6f9fbdf95914d9db7a9 rs3=298c177aa42bc216fe4a8b6d65a5fae3 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=bbce8071064533ec557d668895687a7b addr=27 en=1
+# KERNEL:   actual   data=7fffffff80000000557d66887fffffff addr=27 en=1
+# KERNEL: FAIL R4 000 random 13 instr=101883b
+# KERNEL:   rs1=a7afc10ee6bb7be8205cdf58d3ce062d rs2=56e1f59ebf469aef3b803bb24808bfe4 rs3=f32040a16440c3444c08db797c6b6165 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=a510b96cfeb5b06417d85c7abb6a1f21 addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff17d85c7a7fffffff addr=27 en=1
+# KERNEL: FAIL R4 000 random 14 instr=101883b
+# KERNEL:   rs1=89e95b53c477be0070f730b6b5eabed0 rs2=f441bf83cbe322de4c88fe3a003ec70f rs3=6bee13ab6992781f5d55d88a712f8016 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=84f500d4d4d406e2713d2bfad25e5a1a addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff713d2bfa7fffffff addr=27 en=1
+# KERNEL: FAIL R4 000 random 15 instr=101883b
+# KERNEL:   rs1=01dfc441c982ecad12fe421729ff036b rs2=2ec15e4c361410832e33d6b286d83ee9 rs3=df557f398e652f4b8d543a3e9c627dc0 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=30bc772dcc8fd00e0998953348e5f72b addr=27 en=1
+# KERNEL:   actual   data=30bc772d7fffffff0998953348e5f72b addr=27 en=1
+# KERNEL: FAIL R4 000 random 16 instr=101883b
+# KERNEL:   rs1=46346dee975b3148f437bea6b715fdbf rs2=c0a1b11f2ea92676f26ff51176ee14d5 rs3=2df436e18033dfef86419e5490d9aad4 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=354ba42d9289e372f863a63ab027b023 addr=27 en=1
+# KERNEL:   actual   data=354ba42d7fffffff7fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 000 random 17 instr=101883b
+# KERNEL:   rs1=fda0e17c60cb3b8fef68aea86e130b78 rs2=c8a08d8453ba05dbba6c589c4c9454a8 rs3=b4e7e52a1d57961eff34534c2b6e04fb rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=09a12d245e5f3d390c3d90f86fb8ac30 addr=27 en=1
+# KERNEL:   actual   data=800000005e5f3d39800000006fb8ac30 addr=27 en=1
+# KERNEL: FAIL R4 000 random 18 instr=101883b
+# KERNEL:   rs1=e63894cf19d488d42aefcfd376196e7d rs2=73f8b4da7f2e3c4c3971d1fdd33911b2 rs3=69367ccac1caf388b42de041c1d524da rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=c196e0d316e4b53430a4811078a58811 addr=27 en=1
+# KERNEL:   actual   data=7fffffff16e4b53430a4811078a58811 addr=27 en=1
+# KERNEL: FAIL R4 000 random 20 instr=101883b
+# KERNEL:   rs1=b935975d57d8c6417d3caea9eaff229e rs2=2b7d14b814a4a852f0f56d5a6871781f rs3=47ea7deba1014892e4f73579f06b39e7 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=c36674453efdd5057fffffff062a6d97 addr=27 en=1
+# KERNEL:   actual   data=7fffffff3efdd5057fffffff80000000 addr=27 en=1
+# KERNEL: FAIL R4 000 random 21 instr=101883b
+# KERNEL:   rs1=85526b59664210f2c85aa7bf6a392ecb rs2=7b8f5a197dad28365fa58c2a0462a67d rs3=5057b655904dc1203c2fb73608b6c310 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=800000005c61cdb2e94a3e9b7f87cd9b addr=27 en=1
+# KERNEL:   actual   data=6b651ba65c61cdb27fffffff7f87cd9b addr=27 en=1
+# KERNEL: FAIL R4 000 random 22 instr=101883b
+# KERNEL:   rs1=31b9b6d41579b7cdabd48e4ade2656bb rs2=f840ddd49849215e33d3df753b3759dc rs3=86b2331c9f04b1d9e8bc00597d2b3d40 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=2ae736040b49fe7babc93df7f3a639bb addr=27 en=1
+# KERNEL:   actual   data=2ae736040b49fe7b7fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 000 random 23 instr=101883b
+# KERNEL:   rs1=46898b52807a1c51e462686769c19ca1 rs2=383370892073d145098f3a4c5815156f rs3=49a4801e1883bf46365370aae0a845d3 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=0e523b608c4ad02ffe0a5edf6f9a321e addr=27 en=1
+# KERNEL:   actual   data=0e523b607fffffff7fffffff6f9a321e addr=27 en=1
+# KERNEL: FAIL R4 000 random 24 instr=101883b
+# KERNEL:   rs1=eea851c40326f9dbf148a20b119537f0 rs2=894f3bdc5f426aa8ae7490128a31bd6b rs3=df8389091f56f0cc9d79f5f3659f7f2d rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=d2d72880fcd177bbf5ad9d21f08198bf addr=27 en=1
+# KERNEL:   actual   data=7ffffffffcd177bb7ffffffff08198bf addr=27 en=1
+# KERNEL: FAIL R4 000 random 25 instr=101883b
+# KERNEL:   rs1=4a43f30364cd928bdf634a2415e6c567 rs2=348a76acfaa2a52d4deb67541da73bd6 rs3=f0c3d560d5c10f2523f3509c555a3647 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=36818f835f6e150cffec8154229681c1 addr=27 en=1
+# KERNEL:   actual   data=36818f835f6e150c7fffffff229681c1 addr=27 en=1
+# KERNEL: FAIL R4 000 random 26 instr=101883b
+# KERNEL:   rs1=852d579092cd0874c61384f33ed6395d rs2=46b3a4919b2ffd4f462a95e7fe7bcb92 rs3=7846c3b1342d76ff9cb1f58a516fd27b rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=9ab792d1918cc425ca6966794828cc83 addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff7fffffff4828cc83 addr=27 en=1
+# KERNEL: FAIL R4 000 random 27 instr=101883b
+# KERNEL:   rs1=87449a8b44e32f08c1bd2fa933c8004f rs2=55dc7c9c8994b08d0d17024494d215a9 rs3=9763a01545c52bf2843309392ae6fb8c rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=80000000373fc352c1d214cd33678bbb addr=27 en=1
+# KERNEL:   actual   data=58945357373fc3527fffffff33678bbb addr=27 en=1
+# KERNEL: FAIL R4 000 random 28 instr=101883b
+# KERNEL:   rs1=e9bb8bf249a860c2e4e1f1412fc6f9a8 rs2=bf68d34b649dc1d3682166200a8c8cdb rs3=9909b1e9a3f737a8f8403018f117a1f9 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=f75eb6353c23e83af81184415a11b5ab addr=27 en=1
+# KERNEL:   actual   data=7fffffff3c23e83a7fffffff5a11b5ab addr=27 en=1
+# KERNEL: FAIL R4 000 random 29 instr=101883b
+# KERNEL:   rs1=8fc15e1b257f25162c22349ea0ab38d0 rs2=f62623cad6479229fdf74e500093b366 rs3=578d9ccb5a86a14751733025e24c5584 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=81e2d7494e2377753adc862e87149768 addr=27 en=1
+# KERNEL:   actual   data=7fffffff4e2377753adc862e7fffffff addr=27 en=1
+# KERNEL: FAIL R4 001 saturation instr=111883b
+# KERNEL:   rs1=7fffffff800000007fffffff80000000 rs2=00010001000100010001000100010001 rs3=00010001ffffffff00010001ffffffff rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=7fffffff800000007fffffff80000000 addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff7fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 001 random 0 instr=111883b
+# KERNEL:   rs1=6f739a7420e2b296d3c3c7e5f4feb877 rs2=b96d94717cd2d99b2166d3dc3e9f3715 rs3=eee5b0d8a6de8923f2d69fca1f9595fe rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=742acef5f56d1cb2d20c1f29fcb86c02 addr=27 en=1
+# KERNEL:   actual   data=742acef5f56d1cb27fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 001 random 1 instr=111883b
+# KERNEL:   rs1=77f5b979e8d1996614111d1daf116c23 rs2=616b927ba5a80c684b7bca61821e0f8c rs3=888606249b4734a2f5da1df716820a55 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=4a7e8f7b0c5d42fe11131adba400135f addr=27 en=1
+# KERNEL:   actual   data=4a7e8f7b8000000011131adb7fffffff addr=27 en=1
+# KERNEL: FAIL R4 001 random 2 instr=111883b
+# KERNEL:   rs1=2691f9f7d55021e2d6336804d0b25bf9 rs2=d87d610396b1786e74e05facf1e20ad2 rs3=59f67f79b15d166fe7c7cf8014bac9e0 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=18af7715f5a9412fcb246224cf8dc22d addr=27 en=1
+# KERNEL:   actual   data=18af77157fffffff7fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 001 random 3 instr=111883b
+# KERNEL:   rs1=f6035380aae82b8d3255153494d3b6c9 rs2=c1663745e022a6d6bd2a689502c77420 rs3=fae21055f31d1ee30f3c1db92d1b23e9 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=f743ab8cac82d5672e5ae10c9550fcc6 addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff2e5ae10c7fffffff addr=27 en=1
+# KERNEL: FAIL R4 001 random 4 instr=111883b
+# KERNEL:   rs1=ebc1a02eece2983dc3215677d93c065c rs2=ad2aca12009dcdfc2f39d7198ff1c0e9 rs3=b5ffe21e0f37e0b1d50ff250a9ff917c rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=03b3cf04ecebecf8bb3587cefee1806b addr=27 en=1
+# KERNEL:   actual   data=800000007fffffff7fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 001 random 5 instr=111883b
+# KERNEL:   rs1=c69e599b52f88f851758c068648ef202 rs2=fceb5c94c88e5fa20d6415bc45a2702a rs3=b91434a8706755d161f0ec6b9777bd6f rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=c778eef73aa060a71c783228481fde50 addr=27 en=1
+# KERNEL:   actual   data=7fffffff3aa060a71c783228481fde50 addr=27 en=1
+# KERNEL: FAIL R4 001 random 6 instr=111883b
+# KERNEL:   rs1=bb718521b6a92663c972354b9aac3b56 rs2=1359b444aba1ff55bc1b441d226787f4 rs3=36a015ea187950ae31ca4b024003ceb3 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=bf9262c1ae985d7cbc3dcd99a346628b addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff7fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 001 random 7 instr=111883b
+# KERNEL:   rs1=df43ab4f667a372c445a992d1ce3e154 rs2=21a98c2928c76d1fef4f90da0da35d37 rs3=eeec4cfc6ae2e593ed64887fb9cd60da rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=dd04d11b77809cda45913709192697db addr=27 en=1
+# KERNEL:   actual   data=7fffffff77809cda45913709192697db addr=27 en=1
+# KERNEL: FAIL R4 001 random 8 instr=111883b
+# KERNEL:   rs1=d58af6aca07175b4b49d0b401b0a959f rs2=14576353c645306e3b342ca74e7f91d1 rs3=d12d1454683f5853ea80e3933720d6e8 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=d1d290f788ef48afafa42d402bf1ae7f addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff7fffffff2bf1ae7f addr=27 en=1
+# KERNEL: FAIL R4 001 random 9 instr=111883b
+# KERNEL:   rs1=abf6d5b06d450bc28bd0a071c051f00c rs2=b81ac298c0900f441d9892aaf17974d7 rs3=b7c97f42d0575a392071515cbd8bf45f rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=c03ef81a79147cb28f90b089c41761bf addr=27 en=1
+# KERNEL:   actual   data=7fffffff79147cb27fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 001 random 10 instr=111883b
+# KERNEL:   rs1=ef26bc00eb6149b3c257db4b992c0c73 rs2=060e558d73cb9da146ea2219f71e3123 rs3=c79aa6aab373a42f840494b529b2e885 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=edd1426cc8c13ee49fff9ef397b9ad4f addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff7fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 001 random 11 instr=111883b
+# KERNEL:   rs1=83c5dee9902b376d56895d1128b27eb6 rs2=e2c972c7018d712e9a714517fa81761f rs3=e87bf900ba103932aed176dd1ce537f9 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=8674fd7c8fbec23d76be41522813b01b addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff76be41522813b01b addr=27 en=1
+# KERNEL: FAIL R4 001 random 12 instr=111883b
+# KERNEL:   rs1=191f091f0f1e118791808c162a44c912 rs2=5e13ef5492d5c52b89b8a0cb03b986d0 rs3=b9074989abc3dcf684bb5d4b2b003076 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=ff0a56a4330a30c6ca75057e2ae4dc12 addr=27 en=1
+# KERNEL:   actual   data=ff0a56a4330a30c67fffffff2ae4dc12 addr=27 en=1
+# KERNEL: FAIL R4 001 random 13 instr=111883b
+# KERNEL:   rs1=a490e1b68dc3feb63e582b60619ac0a6 rs2=6346597479769a9b10840ac38877db26 rs3=77147ad0e7998ad58435b8d1957cd2e6 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=d2be2d2e8230103c365ba6b47fffffff addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff365ba6b47fffffff addr=27 en=1
+# KERNEL: FAIL R4 001 random 14 instr=111883b
+# KERNEL:   rs1=239c4262f958897b21b01f7dfe9b8c41 rs2=a48df69d0894a0ae62903f8874edbf83 rs3=a5cde067c16ff8fe5b9309f039e35fab rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=43d4e84bf73fd5a744f1e82d190bff68 addr=27 en=1
+# KERNEL:   actual   data=43d4e84b7fffffff44f1e82d80000000 addr=27 en=1
+# KERNEL: FAIL R4 001 random 15 instr=111883b
+# KERNEL:   rs1=63d378ebab5daa0cba5adca5c52a2971 rs2=906d20ae39cb716f03c3968227d09e89 rs3=e81fb3e04d7573dbc4cf767a6886f129 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=6e3bbe1ebcda22d3b97c3352d56b8051 addr=27 en=1
+# KERNEL:   actual   data=6e3bbe1e7fffffff7fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 001 random 16 instr=111883b
+# KERNEL:   rs1=1ffa8ff4cdd26c8042263a129204a3c9 rs2=202dde72a008eeaf73c32f0eefc1e129 rs3=163a390b94c49dc30b062c6fda9fd098 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=22c5b826f60592a0472251a49463e6a8 addr=27 en=1
+# KERNEL:   actual   data=22c5b8267fffffff472251a47fffffff addr=27 en=1
+# KERNEL: FAIL R4 001 random 17 instr=111883b
+# KERNEL:   rs1=d76dfaedea4c7f3e5c26a69cdf0b6a72 rs2=f2d5d35912a9cb31384752de14da90e9 rs3=260b6d7290c0dee1b65c0e115edb7108 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=d5790814e2308dfe4bf65a20e6c54cf0 addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff4bf65a207fffffff addr=27 en=1
+# KERNEL: FAIL R4 001 random 18 instr=111883b
+# KERNEL:   rs1=33a64156d93435a72dfafa98610a6ff5 rs2=39bfe2723f038c180b4d099140e32876 rs3=0c3e5f117e579164e5e1634967853cb6 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=36693198f84d19ac2cd3ca457b477ae4 addr=27 en=1
+# KERNEL:   actual   data=366931987fffffff2cd3ca457b477ae4 addr=27 en=1
+# KERNEL: FAIL R4 001 random 19 instr=111883b
+# KERNEL:   rs1=06ac8536840ccb03586a62f239ae0047 rs2=9d9120ac94968e8d64a219930a143e6a rs3=5cb3865b0afd35e9cfff8c3fefc3a08e rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=e307cd9980000000458b9e50390a5983 addr=27 en=1
+# KERNEL:   actual   data=e307cd997f707f41458b9e50390a5983 addr=27 en=1
+# KERNEL: FAIL R4 001 random 20 instr=111883b
+# KERNEL:   rs1=37cd00dc0f48f1aa6ac52189e7e97916 rs2=330bf24efcdcddb5de83f236095cf65f rs3=99c6bf6ac35c3c26aab6f1341c490201 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=236b0e5e100764ba75ed50abe8f23452 addr=27 en=1
+# KERNEL:   actual   data=236b0e5e100764ba75ed50ab7fffffff addr=27 en=1
+# KERNEL: FAIL R4 001 random 21 instr=111883b
+# KERNEL:   rs1=b909d7d481edfa74c8d41ecbb1fe5053 rs2=728d6fb48350e4d2ec613b11b4586434 rs3=e054be85cb752bd80a7caba329888b08 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=aaddce189b856e04c80667c7a5b83713 addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff7fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 001 random 22 instr=111883b
+# KERNEL:   rs1=a301d72cab7620624e228891b4c61501 rs2=a2066d4c891949b89681049ace934d9f rs3=de8b1bd8d1a639ee422ea4982c3af879 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=af4a046ec0fd6f9832dcd5bfac3c264f addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff32dcd5bf7fffffff addr=27 en=1
+# KERNEL: FAIL R4 001 random 23 instr=111883b
+# KERNEL:   rs1=356c00e92f3cc48e4047fa3dbe22563d rs2=5342c2d1b2057b73fea1d5ffbbc7f5f4 rs3=cc63526ffdf295f7dd9824519307d68a rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=24a2cb6f2fdcfe48407726d5db2cbdae addr=27 en=1
+# KERNEL:   actual   data=24a2cb6f2fdcfe48407726d57fffffff addr=27 en=1
+# KERNEL: FAIL R4 001 random 24 instr=111883b
+# KERNEL:   rs1=f331fec46085a650d5d0ea1332c19c8d rs2=2e8eadc64a70c13725ce144a0785e035 rs3=d17a4e743d2ffbca53a00f1357bbd7a4 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=eabc1c70725000e0e22a54d335554db4 addr=27 en=1
+# KERNEL:   actual   data=7fffffff725000e07fffffff35554db4 addr=27 en=1
+# KERNEL: FAIL R4 001 random 25 instr=111883b
+# KERNEL:   rs1=b9d8d82a272263b2edb657d43c00e16d rs2=c7836b352777d5880bea7eb5bc97b35a rs3=e40366aa28bb557422b54b4e2dd53169 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=c005dab32d69cf9fef53d8462fef5610 addr=27 en=1
+# KERNEL:   actual   data=7fffffff2d69cf9f7fffffff2fef5610 addr=27 en=1
+# KERNEL: FAIL R4 001 random 26 instr=111883b
+# KERNEL:   rs1=3f888773f317ce17bd44f8a187d53118 rs2=563964aab0ef59aad326bc4a79a1ace2 rs3=931edd292f3b7967caa50cf5719b2c08 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=1adc5d21e481762cc69e0c1fbdcee693 addr=27 en=1
+# KERNEL:   actual   data=1adc5d217fffffff7fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 001 random 27 instr=111883b
+# KERNEL:   rs1=20e04a61d9aedf27a51f5c0fdc996294 rs2=e58f8c6be6f7ad4c15b736bfcf274d9a rs3=5321435cd60b50e057fa021708ae4fc1 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=184a3ed0ddc945c4ac95c1c5daf16716 addr=27 en=1
+# KERNEL:   actual   data=184a3ed07fffffff7fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 001 random 28 instr=111883b
+# KERNEL:   rs1=c31ec9dc205359fef2edc6866b981201 rs2=76e4c4f96024f670505abe9147a72cad rs3=179a5d388562f29947929cc21942dcb4 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=ce14cb04f246dbc609648fda72a9da0f addr=27 en=1
+# KERNEL:   actual   data=7ffffffff246dbc68000000072a9da0f addr=27 en=1
+# KERNEL: FAIL R4 001 random 29 instr=111883b
+# KERNEL:   rs1=0f3a74ed95c46495b991bce019724923 rs2=3fc96fccd138659ee165b45f5b081ced rs3=3c675fbf77817db17a87f61a724778ee rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=1e473acc80000000aaebbb234215185b addr=27 en=1
+# KERNEL:   actual   data=1e473acc7fedd9cd7fffffff4215185b addr=27 en=1
+# KERNEL: FAIL R4 010 saturation instr=121883b
+# KERNEL:   rs1=7fffffff800000007fffffff80000000 rs2=00010001000100010001000100010001 rs3=ffffffff00010001ffffffff00010001 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=7fffffff800000007fffffff80000000 addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff7fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 010 random 0 instr=121883b
+# KERNEL:   rs1=1297aaf950a9a570be927d3f4157822d rs2=16147f4a189a0249179fb3897d6b1061 rs3=c015a6b4052fc0d84c0606b59ad640b6 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=3efe2ef15139f7d8c09357623d339d37 addr=27 en=1
+# KERNEL:   actual   data=3efe2ef15139f7d87fffffff3d339d37 addr=27 en=1
+# KERNEL: FAIL R4 010 random 1 instr=121883b
+# KERNEL:   rs1=2157913f6fd9b18a9e32e12ed1a3f0d0 rs2=4da8a809be608b82976ffa0ae4d9660f rs3=85903da0a435f9bfe1993039d4b6a515 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=3684669f6d01298c9f5254f4f5e2e695 addr=27 en=1
+# KERNEL:   actual   data=3684669f6d01298c7fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 010 random 2 instr=121883b
+# KERNEL:   rs1=4803af94ccc4d67e117864fbfc263d84 rs2=48538d46a1ff38dca4e00992a3778e0c rs3=fcc3d806c70d38bfc3f454396aaac4a4 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=36194ff0c02a4a5a0e525b79e1ba0dd4 addr=27 en=1
+# KERNEL:   actual   data=36194ff07fffffff0e525b797fffffff addr=27 en=1
+# KERNEL: FAIL R4 010 random 3 instr=121883b
+# KERNEL:   rs1=e5dfb05dbfc98cf7c79e505434461f16 rs2=2eca04a638e7679fcf233de853202fc1 rs3=10d214e33c6f34c92f8df44c92032a9a rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=e57e992baa6be520ca72cf742c53bafc addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff7fffffff2c53bafc addr=27 en=1
+# KERNEL: FAIL R4 010 random 4 instr=121883b
+# KERNEL:   rs1=c1abdfcdf8f61f59983f3c2067c97e73 rs2=4119cd2c69ce8031f3d5547efdd43e80 rs3=49d6296951ad9b8e52ea176f0dc02016 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=c9e4acc1c6d0592b9083477e5ff41f73 addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff7fffffff5ff41f73 addr=27 en=1
+# KERNEL: FAIL R4 010 random 5 instr=121883b
+# KERNEL:   rs1=ff6046616a2550b1422a71a07e4610b4 rs2=c83a557b1f169fc176412155ca80a847 rs3=87624efc802c29ef9139f09ee29ffba9 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=e500a74d79e94282442b2f2a7cc95cd5 addr=27 en=1
+# KERNEL:   actual   data=7fffffff79e94282442b2f2a7cc95cd5 addr=27 en=1
+# KERNEL: FAIL R4 010 random 6 instr=121883b
+# KERNEL:   rs1=19a17a9981ba0fdb3da1dec75da9936a rs2=70f36d4d1452d235f6fbed14897a8ad3 rs3=cafe906ccd3718a78c6982ad751e1b27 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=49450e1d8622f748345e80436a172c45 addr=27 en=1
+# KERNEL:   actual   data=49450e1d7fffffff345e80436a172c45 addr=27 en=1
+# KERNEL: FAIL R4 010 random 7 instr=121883b
+# KERNEL:   rs1=8ca585f8bbc082f2e4e09bd749eb172c rs2=1559fe33e745e8576b393865bdff1ae9 rs3=064ed275bff9a9371efebd6db6d673b0 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=8c5382a9b3bb2941f38b07d63dc1ebfc addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff7fffffff3dc1ebfc addr=27 en=1
+# KERNEL: FAIL R4 010 random 8 instr=121883b
+# KERNEL:   rs1=bd30793f6228f6fddc893e3d312c045e rs2=2ce8278fe04d363b7eade08f943ca9e1 rs3=725f33753bcedf13f594cffcde3de3fa rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=b53ce7e469228b9cd6a3907927be9ba4 addr=27 en=1
+# KERNEL:   actual   data=7fffffff69228b9c7fffffff27be9ba4 addr=27 en=1
+# KERNEL: FAIL R4 010 random 9 instr=121883b
+# KERNEL:   rs1=f47d8be6486b7fd8f43674aebe8fc643 rs2=16f759cf5126c5f4ffe8e15a242e7573 rs3=642b1e6d01c8b10b4681ac6cf467b4e1 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=e9d10cc336844a5cea34eab6e106b030 addr=27 en=1
+# KERNEL:   actual   data=7fffffff36844a5c7fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 010 random 10 instr=121883b
+# KERNEL:   rs1=0492e2db43695460e71fa8833b1d4846 rs2=a7604cec77acca7742f3301feb252dc6 rs3=0104ad3ac3583efc5d92f8982ee4f431 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=1d71f9635095353ce8840e1b3d39cd60 addr=27 en=1
+# KERNEL:   actual   data=1d71f9635095353c7fffffff3d39cd60 addr=27 en=1
+# KERNEL: FAIL R4 010 random 11 instr=121883b
+# KERNEL:   rs1=66e35a7f001332e36ad6a051d755b185 rs2=147dee22f4b65ed0f20f6c2dee725db7 rs3=634f3615bdbbd7b8af0ae84219ea95b2 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=6aa9a5b50efe5d6374def4b7fe400547 addr=27 en=1
+# KERNEL:   actual   data=6aa9a5b50efe5d6374def4b77fffffff addr=27 en=1
+# KERNEL: FAIL R4 010 random 12 instr=121883b
+# KERNEL:   rs1=dc82efdde27a59c7c7d25fcce0100a9f rs2=0805a0f19a0fdd8475d5606413952167 rs3=48492048ca7ddb32c15cbc717f178675 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=e87f8c15dd8529ffe14263a8efebdc8c addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff7fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 010 random 13 instr=121883b
+# KERNEL:   rs1=d2cfa52d87bbe079fa06c0de37d9b9c0 rs2=e4586f555dab5c45b5e4920de3bad708 rs3=f9a65c32b921c4ee0ddbe40b59ac1e5f rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=aab75a939d064453ee04e64f3cb5fdc8 addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff7fffffff3cb5fdc8 addr=27 en=1
+# KERNEL: FAIL R4 010 random 14 instr=121883b
+# KERNEL:   rs1=fc89fd89efec7c99b86f8204b9d800ea rs2=ad5e0542f80417dd6f4458f8d3a6b5e8 rs3=e4be1a7ef95aeaa98edff9ae18089bf4 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=fbfeb30df1e9b9b4baa1d1749ce327ca addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff7fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 010 random 15 instr=121883b
+# KERNEL:   rs1=b52d6befd60cff642678c5e99e2eea86 rs2=a9e393633875dc55367f3cd9dc5f77bf rs3=e44b9ea00012bb44db0b1ad49e189665 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=8bdd340fcc7961d020185835cf94c22b addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff201858357fffffff addr=27 en=1
+# KERNEL: FAIL R4 010 random 16 instr=121883b
+# KERNEL:   rs1=462a51773b5e1761bace4045b086502b rs2=181df513983bb565a6da93e4769a8036 rs3=347b4891145a89f7b2a754279b2d91dc rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=494329b418f805eede57e88980000000 addr=27 en=1
+# KERNEL:   actual   data=494329b418f805ee7fffffff798b8bc3 addr=27 en=1
+# KERNEL: FAIL R4 010 random 17 instr=121883b
+# KERNEL:   rs1=02b066d51d642250b1958bf7f1a5e7ae rs2=e88fb59b842773216efa9ea711002eb8 rs3=027231cc106731b3cab31f21a1f32206 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=11290451070a513dbd6bdf70eb705f5e addr=27 en=1
+# KERNEL:   actual   data=11290451070a513d7fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 010 random 18 instr=121883b
+# KERNEL:   rs1=4241ad12f2d21b5045af6662cb8d826a rs2=ad70d0ae3a2dcee14b0e9d27ba55467c rs3=8beff98826231cd86a742ce848db46e2 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=410f92a2f85af1785706470ab80960f2 addr=27 en=1
+# KERNEL:   actual   data=410f92a27fffffff5706470a7fffffff addr=27 en=1
+# KERNEL: FAIL R4 010 random 19 instr=121883b
+# KERNEL:   rs1=838b41872fa4f14fc28ecc053626ead1 rs2=f50f4a23c2d93c717687993fba9198d3 rs3=70579c3772fd7d185982fa6956e1efca rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=a0710002121c19b7c0506b2e2f9e5753 addr=27 en=1
+# KERNEL:   actual   data=7fffffff121c19b77fffffff2f9e5753 addr=27 en=1
+# KERNEL: FAIL R4 010 random 20 instr=121883b
+# KERNEL:   rs1=c342b11b4c36d1b817c4325e57f30c34 rs2=62b4f8f25bd7b37a589fe2352b345db0 rs3=a595723f83a3bfab5e78e9b37a12d0c0 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=c668a98d38fbe93a152bca4f693dc834 addr=27 en=1
+# KERNEL:   actual   data=7fffffff38fbe93a152bca4f693dc834 addr=27 en=1
+# KERNEL: FAIL R4 010 random 21 instr=121883b
+# KERNEL:   rs1=4543a6bec23c3357fdc65b004c2450cf rs2=aeb02171c065fd31c8d8759ea5fae676 rs3=103db1f8428489b59efddc963d14f5fa rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=4f752046c0eff6b20e0ba86c4b245393 addr=27 en=1
+# KERNEL:   actual   data=4f7520467fffffff800000004b245393 addr=27 en=1
+# KERNEL: FAIL R4 010 random 22 instr=121883b
+# KERNEL:   rs1=7c23112515b2ad907a097bf3acb46219 rs2=8269bacfd295523f204cd174e3be9705 rs3=fa2010e6e399c8f502218c7c5563c1b0 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=7fffffff2761bf45650897c39326c9a9 addr=27 en=1
+# KERNEL:   actual   data=7fffffff2761bf45650897c37fffffff addr=27 en=1
+# KERNEL: FAIL R4 010 random 23 instr=121883b
+# KERNEL:   rs1=4c221bc84b0be7c1ec58b94d5d6bb74a rs2=043d7bd2bd8e54f0bb94eb7599eb5107 rs3=1caa60387941a4aff2f81b870f0d4025 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=1d9845d8695817b1ee8e379a491e4147 addr=27 en=1
+# KERNEL:   actual   data=1d9845d8695817b17fffffff491e4147 addr=27 en=1
+# KERNEL: FAIL R4 010 random 24 instr=121883b
+# KERNEL:   rs1=dd1c9719678d2cf509e52c0e5ac59e2d rs2=0f4d0acd4946b39fac2049bf2df7bd78 rs3=180d408109245adbb4989aed9309fdf4 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=da63e5cc7fffffff2703003b5a3d6fcd addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff2703003b5a3d6fcd addr=27 en=1
+# KERNEL: FAIL R4 010 random 25 instr=121883b
+# KERNEL:   rs1=6afbac0699366fcac0d8f241275baa28 rs2=1908ece59bdcff6130c478a981cd2075 rs3=846b48b65187558fc71f82903ccacc9e rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=7068d938996b939bfbf841312ddf65f2 addr=27 en=1
+# KERNEL:   actual   data=7068d9387fffffff7fffffff2ddf65f2 addr=27 en=1
+# KERNEL: FAIL R4 010 random 26 instr=121883b
+# KERNEL:   rs1=c09ef6b108c9caa4eab40450f24fb589 rs2=d7e71085703882f170e459e4645ca346 rs3=32ac3c685f3c04ab887655e2c8ad2150 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=bcb914a90b118fa9cc8bf508fe60a9a9 addr=27 en=1
+# KERNEL:   actual   data=7fffffff0b118fa97fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 010 random 27 instr=121883b
+# KERNEL:   rs1=1d53646fcefec814a98bcba7fb43e113 rs2=e7f80f1f0ce125dcad5d08d33cfc40ae rs3=2e1b2d438ed347c3609cf1f721e6f9f9 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=1aa6fc52c461ed80aa07a512fcc9b9d5 addr=27 en=1
+# KERNEL:   actual   data=1aa6fc527fffffff7fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 010 random 28 instr=121883b
+# KERNEL:   rs1=641070ff05caff83fdb5b68dbb143dc9 rs2=120182253d85a7ed2b885028a8cdbf72 rs3=f9ffa3c659247452014840ec3167748d rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=36b939612dcfd199e961d1add87823ff addr=27 en=1
+# KERNEL:   actual   data=36b939612dcfd1997fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 010 random 29 instr=121883b
+# KERNEL:   rs1=6d119f0cfc33d2247bb0453f4df60cfa rs2=03b50747c594c0db0a63ecc0b5a66728 rs3=d6272b4427c9441de11d4e77aa618493 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=6bd6c3300d00cd557fffffff7fb23102 addr=27 en=1
+# KERNEL:   actual   data=6bd6c330800000007fffffff7fb23102 addr=27 en=1
+# KERNEL: FAIL R4 011 saturation instr=131883b
+# KERNEL:   rs1=7fffffff800000007fffffff80000000 rs2=00010001000100010001000100010001 rs3=ffffffff00010001ffffffff00010001 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=7fffffff800000007fffffff80000000 addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff7fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 011 random 0 instr=131883b
+# KERNEL:   rs1=d13b47e57e93541876854c4eca1cc28e rs2=52c8cfee46e7f032b58819c097ee5b42 rs3=5e15dd1c7a2e37e474def9cf3afa72f6 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=b2cf0d7d5cbc80967fffffffe2167822 addr=27 en=1
+# KERNEL:   actual   data=7fffffff5cbc80967fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 011 random 1 instr=131883b
+# KERNEL:   rs1=524f1e7b4adcade396a3683b07cd3590 rs2=8c5fd7f94d050980fe4f21f07efac85a rs3=0791c73583813a5049cfc0bf3a261409 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=55ba03ac70514f5e97203f5aeaf5b874 addr=27 en=1
+# KERNEL:   actual   data=55ba03ac70514f5e7fffffffeaf5b874 addr=27 en=1
+# KERNEL: FAIL R4 011 random 2 instr=131883b
+# KERNEL:   rs1=3e86019cd07a820fd18bde51c31baafb rs2=ed951fb7002dc8c1fea2f25807be4fc0 rs3=29b649bd8d5e8f19159060064d56dfdc rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=41863caed08ea889d1a95931c0c4eb27 addr=27 en=1
+# KERNEL:   actual   data=41863cae7fffffff7fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 011 random 3 instr=131883b
+# KERNEL:   rs1=98f1f96f7a1c231f68ed66c276b1a6ca rs2=a45e85252b92fb0cbb94ea19ae8f5d42 rs3=b4f1c8234ede5a78d62744f2239058be rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=800000006cafde835dbe1b367fffffff addr=27 en=1
+# KERNEL:   actual   data=7e1424f16cafde835dbe1b367fffffff addr=27 en=1
+# KERNEL: FAIL R4 011 random 4 instr=131883b
+# KERNEL:   rs1=05547c30f56ca5b6d91b9c055024af3a rs2=3099186983cb077e356f638e2074533c rs3=61814952d3d34ccdf9dc0c3d45de6c13 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=f2d20617dffdb465da63b9a1474946a2 addr=27 en=1
+# KERNEL:   actual   data=f2d206177fffffff7fffffff474946a2 addr=27 en=1
+# KERNEL: FAIL R4 011 random 5 instr=131883b
+# KERNEL:   rs1=2d1a562d45811b0804860b70cbdf6e62 rs2=972a078e0661e467d897b2a3f121b8e0 rs3=346ae32fd8e53e90376d8a26c974b958 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=429136c9467a8e430d0e6225c8b4426e addr=27 en=1
+# KERNEL:   actual   data=429136c9467a8e430d0e62257fffffff addr=27 en=1
+# KERNEL: FAIL R4 011 random 6 instr=131883b
+# KERNEL:   rs1=9f2fd10041097f8205212311eea2ddf7 rs2=9bf47d827d3ac4b47b9a9475b6ded6c6 rs3=0de10d55c6f8c87dbd2017d4fc04eb74 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=a49c5b8c5cef5352256afdd1ed7f7a7f addr=27 en=1
+# KERNEL:   actual   data=7fffffff5cef5352256afdd17fffffff addr=27 en=1
+# KERNEL: FAIL R4 011 random 7 instr=131883b
+# KERNEL:   rs1=bc9cf60f513a29b6aade78d26f756959 rs2=8636104e90ca099da45c4c2bff196db7 rs3=d69e3710e74723fcdd7521e7b1739042 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=a8ecfcbb467cbbb09e80eec66f2e881e addr=27 en=1
+# KERNEL:   actual   data=7fffffff467cbbb07fffffff6f2e881e addr=27 en=1
+# KERNEL: FAIL R4 011 random 8 instr=131883b
+# KERNEL:   rs1=a39308418a39c58a189926cc1cb231e1 rs2=0ce89a95d72844904de0e914bfd173b6 rs3=87693c9879e7dfcf944c3460d9371a5c rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=a9a765199dacb872395c884c12f8d2fa addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff395c884c12f8d2fa addr=27 en=1
+# KERNEL: FAIL R4 011 random 9 instr=131883b
+# KERNEL:   rs1=e109910245e227a02c7e38ec2c12e16f rs2=c9519c4f33e5555df2b8720391720350 rs3=fdd0978f0e9834ff93f8ffb44b9cf929 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=e091f23242ecd1a826e36eac4cb9d9f7 addr=27 en=1
+# KERNEL:   actual   data=7fffffff42ecd1a826e36eac4cb9d9f7 addr=27 en=1
+# KERNEL: FAIL R4 011 random 11 instr=131883b
+# KERNEL:   rs1=82fb0109f0dbdb2563419cb44509baab rs2=411e57d2da8c1a7a49e7a1aecbf27bb8 rs3=7fc4a90acbe6e2444f77487e0cab2e81 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=80000000e93c7d5d4c50f953479d2805 addr=27 en=1
+# KERNEL:   actual   data=627b44117fffffff4c50f953479d2805 addr=27 en=1
+# KERNEL: FAIL R4 011 random 12 instr=131883b
+# KERNEL:   rs1=a914ce076f0e93ddf4f3fb3a6dab4116 rs2=bb9f08515e716162c091ab5b9f0fa974 rs3=188647bd39216f96baca1cb1b40d93c2 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=afa1b0cd59fb3e4ce3cdaed050e8a153 addr=27 en=1
+# KERNEL:   actual   data=7fffffff59fb3e4c7fffffff50e8a153 addr=27 en=1
+# KERNEL: FAIL R4 011 random 13 instr=131883b
+# KERNEL:   rs1=dcaf3dba8072b205f1876b96f1eb30d7 rs2=a37cd1ea7657e56c32b44266bdd86900 rs3=3a06cbf4e7aa4c570f95722ea85976ff rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=f1a750d28bb29b3fee715cd2db4470bf addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff7fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 011 random 14 instr=131883b
+# KERNEL:   rs1=8b30c698e21e120c4057e2a33f91af55 rs2=e4d4c003755f77a796790d54a1dcf7c3 rs3=3595db64d7f32f86345f7823140ab30e rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=90e0b334f47adfdf55ee77bc46f02cbd addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff55ee77bc46f02cbd addr=27 en=1
+# KERNEL: FAIL R4 011 random 15 instr=131883b
+# KERNEL:   rs1=6f2527be4d368ae6cbdbe2f17a752503 rs2=4b0b7fff90825dce3ba31c981e5c92ba rs3=15a8d8520c3dbd2b405bb31ec19da31e rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=68cc0186528b03ecbcddf0007fffffff addr=27 en=1
+# KERNEL:   actual   data=68cc0186528b03ec7fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 011 random 16 instr=131883b
+# KERNEL:   rs1=3d4a8cb1e0dbfb3cbfd9f3268e4ec3ac rs2=673f84bd79938630dfd7eaa9d648957a rs3=03ea40d1c9518d0cf41e62e60459a67a rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=3bb6701bfad418b9be5bcbf48f0424a4 addr=27 en=1
+# KERNEL:   actual   data=3bb6701b7fffffff7fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 011 random 17 instr=131883b
+# KERNEL:   rs1=623e245414488ed2e5ef05974625faff rs2=4c16914e8fb637df06cf2164c6b72b80 rs3=44aba93df45f3194fed5c19c46ca1a9c rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=4dd579a20f2ec248e5f6f95c55fd2499 addr=27 en=1
+# KERNEL:   actual   data=4dd579a20f2ec2487fffffff55fd2499 addr=27 en=1
+# KERNEL: FAIL R4 011 random 18 instr=131883b
+# KERNEL:   rs1=b251c7291705c83859970d223533875e rs2=f9ee06f68f0a8b1df7f220a55f84ffc1 rs3=de5b6df8a4b44b00afa5d813edaff776 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=b1858b8feebccd30570fd0283c090822 addr=27 en=1
+# KERNEL:   actual   data=7fffffffeebccd30570fd0283c090822 addr=27 en=1
+# KERNEL: FAIL R4 011 random 19 instr=131883b
+# KERNEL:   rs1=25a188cc108f1ab5a6e43b4ea2fd06e4 rs2=829692654a283603796382209f89966f rs3=489478652866f2cc18e6e36ce7de79fc rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=492fda1404db4ec59b15e45c99e50f16 addr=27 en=1
+# KERNEL:   actual   data=492fda1404db4ec57fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 011 random 20 instr=131883b
+# KERNEL:   rs1=518950adb72120714428a3a7605640b5 rs2=62211437568b7974afb2168548323d09 rs3=f54fb322500d0b5edbc587f670a988f6 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=55a2737e9c114b6238cb29ad4090b7b3 addr=27 en=1
+# KERNEL:   actual   data=55a2737e7fffffff38cb29ad4090b7b3 addr=27 en=1
+# KERNEL: FAIL R4 011 random 21 instr=131883b
+# KERNEL:   rs1=bd5fd60e0306b8e28c494053cf2d8a8a rs2=f61be0aa018e3a42dae217d4c3d3bca6 rs3=4eec098aeb2e3ff18b5f4d46a58cc005 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=c06cbb2a0327175e80000000b9ea7426 addr=27 en=1
+# KERNEL:   actual   data=7fffffff0327175e7b6050757fffffff addr=27 en=1
+# KERNEL: FAIL R4 011 random 23 instr=131883b
+# KERNEL:   rs1=f293c413f4a62a8d9e4264d4f1ca4310 rs2=51c4edd304ca67c661a41abe7fdaf2ca rs3=a5a5a603b9db0783a4a0d2525fb90b3f rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=0f6fbcbff5f617bfc11c4e54c1fbf886 addr=27 en=1
+# KERNEL:   actual   data=800000007fffffff7fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 011 random 24 instr=131883b
+# KERNEL:   rs1=2b4fe3ace8a09287a3f94d13297b8f84 rs2=599b0c5e3e3dcfe952a1bdb6244fb9a5 rs3=789d4f40f4d72ff5db89e0190ead89e9 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=0118479deb57294cafbe59ea2766b421 addr=27 en=1
+# KERNEL:   actual   data=0118479d7fffffff7fffffff2766b421 addr=27 en=1
+# KERNEL: FAIL R4 011 random 25 instr=131883b
+# KERNEL:   rs1=a57f1d684e8b81500aba1c7426af865a rs2=479d536ce960545e514329cd8ea86e83 rs3=76abe8399c06b0e7cd60e3b18a79e77b rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=844ce98945b589101acbfc54f2a688f2 addr=27 en=1
+# KERNEL:   actual   data=7fffffff45b589101acbfc54f2a688f2 addr=27 en=1
+# KERNEL: FAIL R4 011 random 26 instr=131883b
+# KERNEL:   rs1=3a543522928301f82908472028db6422 rs2=2fe72b3b0d0d5c07f823cac858f0cdaa rs3=e36d09e8112d815ab44086769484b059 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=3facfac791a2d9af26b4a2604e32c862 addr=27 en=1
+# KERNEL:   actual   data=3facfac77fffffff26b4a2604e32c862 addr=27 en=1
+# KERNEL: FAIL R4 011 random 27 instr=131883b
+# KERNEL:   rs1=bbe16ab0cf6848a868a1ddc99231f08c rs2=8803b6569d0a4a006ed8a2288d054bfe rs3=9f11572a73f5f5e94c55dff5c8df2b4a rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=8e72857dfc3b80164794f01180000000 addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff4794f011796f3131 addr=27 en=1
+# KERNEL: FAIL R4 011 random 28 instr=131883b
+# KERNEL:   rs1=d8403c9ca0197aca5440cb02086287ae rs2=da258411ed931c8c595a7e44a2c5e911 rs3=099d5af981d0e27da13182c509a7c046 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=d9ac26eb9704605a755816c80be66c2b addr=27 en=1
+# KERNEL:   actual   data=7fffffff7fffffff755816c80be66c2b addr=27 en=1
+# KERNEL: FAIL R4 011 random 29 instr=131883b
+# KERNEL:   rs1=9b866e21e762bf77c79251df9957a192 rs2=7ef47a4576049840264146a6051a236b rs3=53a2d1e988d7cc3424ddb2a61d056582 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=800000001e51821bc21027c298c39610 addr=27 en=1
+# KERNEL:   actual   data=720cfbb9800000007fffffff7fffffff addr=27 en=1
+# KERNEL: FAIL R4 100 saturation instr=141883b
+# KERNEL:   rs1=7fffffffffffffff8000000000000000 rs2=00000001000000010000000100000001 rs3=0000000100000001ffffffffffffffff rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=7fffffffffffffff8000000000000000 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 100 random 0 instr=141883b
+# KERNEL:   rs1=d3a8ec682a1a2421069509cdd8708403 rs2=bd00524c68224b710a4859aaced07b1b rs3=b08c7ae03948378e1d357fd8ad813eba rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=eaf5ef72ac1d43cf166e9ce4e1557fa1 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff166e9ce4e1557fa1 addr=27 en=1
+# KERNEL: FAIL R4 100 random 1 instr=141883b
+# KERNEL:   rs1=ce4a6f041de22181cb58d3b4dba20a9a rs2=4a574540e6e4f5dc4ad33755ba182e7f rs3=59d9cb1aa7415eda73ebc3bda53bdabf rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=d6fe6c5fbffe46d9e421e304dd89e15b addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 100 random 2 instr=141883b
+# KERNEL:   rs1=caccefabbc04ccc49d03844bb3e6b104 rs2=536dc36f85d82095cc44f574ccd41d50 rs3=2ee9215d4bebdce197403ab2fbbfbb41 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=a692b537aac07bb99ddd0c8cf5db9254 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 100 random 3 instr=141883b
+# KERNEL:   rs1=5212553756fc00f2a6403fbb63ae4b95 rs2=55ad53229113f233e53438f6f791fdf1 rs3=e96c54796e5d17d169cc372a7e4312dd rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=22409136798e5195a217e54e74a476a2 addr=27 en=1
+# KERNEL:   actual   data=22409136798e51957fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 100 random 5 instr=141883b
+# KERNEL:   rs1=347594ad1878afd4d023135cb43220bc rs2=b8be991d1f3e76c7ff3e4c7d9c69befe rs3=cff8fa52b282b971328a7c505ae9f681 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=2b0080d6b5eeecabacc53cdc443172ba addr=27 en=1
+# KERNEL:   actual   data=2b0080d6b5eeecab7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 100 random 7 instr=141883b
+# KERNEL:   rs1=6f17e8ea50a4b99bdb94dc70df1b6007 rs2=e023b934975558c0d6209693657b10e7 rs3=2d8c6f08482e87f9ca092d86b18f7c8f rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=5194e39e76f54c5bbc7cc3585312b510 addr=27 en=1
+# KERNEL:   actual   data=5194e39e76f54c5b7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 100 random 8 instr=141883b
+# KERNEL:   rs1=885bab91b46cd85c97604ad73efda083 rs2=638b300523ac3bf9413c2d9109cd59a5 rs3=19f2c93e5d9df33e8d68bead27c711fc rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=95673fe111c5b9aa98e632d05a58d3ef addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 100 random 9 instr=141883b
+# KERNEL:   rs1=86f0e08a9b656c9cc5b0f8c8b4d806b6 rs2=27cac5beb1f0fa6a4a2a9716a0666a70 rs3=15ff06910c8d830adc193f96084ee7b3 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=831d060cc35572c0c296b4ca349f8306 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 100 random 11 instr=141883b
+# KERNEL:   rs1=35ff38b99446738f905ca5a5520cd6cb rs2=e8d4d4e83b2efcb4caefb096eb240f61 rs3=906801f69b14af286c1e8140e8dc93db rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=1eaa7730ac6cfbaf923f4b254e16b1c6 addr=27 en=1
+# KERNEL:   actual   data=1eaa7730ac6cfbaf7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 100 random 12 instr=141883b
+# KERNEL:   rs1=cec84cd2c0d6e684971d5fe1df0ff9c8 rs2=d206f7eb868ba48b3c46062328944bc5 rs3=e0f2cdc2a196a18fe9b4828f72ff6242 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=fb9303ef8fc53b29a957e4ea4d87ec92 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 100 random 13 instr=141883b
+# KERNEL:   rs1=642608ba6e767f13e20a5f3fe240848b rs2=0d6a64328f6000b15db0ffd7f9449606 rs3=d324aad5d1d96f3e130f6ab55d5953b9 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=7873c009df0c68f1df95f064978ae0e1 addr=27 en=1
+# KERNEL:   actual   data=7873c009df0c68f17fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 100 random 14 instr=141883b
+# KERNEL:   rs1=0eba5630de068a2bf8b6f1679248660f rs2=70f913840277ab2e9ccd6c5dad6b4adb rs3=07b141ddf75500204e32fddfb2855b9d rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=0ea4f2e86541efeb11b53bc93a78275e addr=27 en=1
+# KERNEL:   actual   data=0ea4f2e86541efeb8000000000000000 addr=27 en=1
+# KERNEL: FAIL R4 100 random 15 instr=141883b
+# KERNEL:   rs1=e931bd63cde8ff28c94c904056417403 rs2=86648befec1b7919b33b83548404fcb1 rs3=38313ee010a0ee182dde3d1e87a25e44 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=e7e6f3a0bab19780039792517b5f9107 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff8000000000000000 addr=27 en=1
+# KERNEL: FAIL R4 100 random 16 instr=141883b
+# KERNEL:   rs1=81c31e2ff2b808826c7c91ceab912094 rs2=349e70c14989620cd7be36e989f23a39 rs3=365175fc71dbf72adeb8b5c90e0b5450 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=a277f1fdbd1fb27a66029784e0d10664 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff66029784e0d10664 addr=27 en=1
+# KERNEL: FAIL R4 100 random 17 instr=141883b
+# KERNEL:   rs1=ff42e49cb712ecb59dc591480d4c067f rs2=ffe902c78c8f8bc791a892b88e9c4f35 rs3=3ad1ab5e00dc97e959997215ece3cc36 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=fedf6b78702f85d4a63c753ec961f7ad addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 100 random 19 instr=141883b
+# KERNEL:   rs1=f21cc8e65cf8a3014b42f86908377812 rs2=eb56f1365e23033b1daea6650468dc6b rs3=dcc818a7af09a3c515d17b296f73a58d rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=d45740548b0bb0684d2e6df0751ad601 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff4d2e6df0751ad601 addr=27 en=1
+# KERNEL: FAIL R4 100 random 22 instr=141883b
+# KERNEL:   rs1=497018c5700dd1e3e7dbdfe1b633c4a8 rs2=f869270d793fa46847e86928e5d60ace rs3=1bedc3d927057f55a353eb9aeb563cd3 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=5beb655e52c7006be9f880af0b5af472 addr=27 en=1
+# KERNEL:   actual   data=5beb655e52c7006b7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 100 random 24 instr=141883b
+# KERNEL:   rs1=ab9eddbc7a1f28eb88514d6af2195acd rs2=1a86cd78d0611f83e86317ed5e5544ee rs3=2004d1922d8eeaace6d6f2e5a5c7974f rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=a3255a7ec3d812ef8000000000000000 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff671289f45514023f addr=27 en=1
+# KERNEL: FAIL R4 100 random 25 instr=141883b
+# KERNEL:   rs1=d5de5b347e7b66a34b984e6d4d381d0a rs2=b7eae3d15389e44bb7cdb6f36dcb0967 rs3=af9ea07ac952255156cdfb737ecae65e rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=c4068980de21795e7fffffffffffffff addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 100 random 27 instr=141883b
+# KERNEL:   rs1=831f9ab51407bd1f365d5640e9b24382 rs2=0b199484d15b391ece53e41b7ebaa2a8 rs3=1a31d4867b880681c26fd21fbe01c70a rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=800000000000000015b2199444153612 addr=27 en=1
+# KERNEL:   actual   data=6c9da66d7846393d15b2199444153612 addr=27 en=1
+# KERNEL: FAIL R4 100 random 28 instr=141883b
+# KERNEL:   rs1=a2cb0f49d8e0b56c5c4387c773690ce0 rs2=56ff0c97f0b1b8f0485015b7ae948435 rs3=1b7a960b7a17836943e5d535b55b75a6 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=9b7e598880f85fdc7400ee6bfffa003e addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7400ee6bfffa003e addr=27 en=1
+# KERNEL: FAIL R4 101 distinct upper/lower operands instr=151883b
+# KERNEL:   rs1=00000000000000000000000000000000 rs2=fffe0003fffe0003fffe0003fffe0003 rs3=0004fffb0004fffb0004fffb0004fffb rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=fffffff60018fff1fffffff60018fff1 addr=27 en=1
+# KERNEL:   actual   data=00000000000000000000000000000000 addr=27 en=1
+# KERNEL: FAIL R4 101 saturation instr=151883b
+# KERNEL:   rs1=7fffffffffffffff8000000000000000 rs2=00000001000000010000000100000001 rs3=0000000100000001ffffffffffffffff rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=7fffffffffffffff8000000000000000 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 101 random 0 instr=151883b
+# KERNEL:   rs1=01296e836fec0cc01bee2c29be8ff8fb rs2=dd39866ab45744088a684f68ce0ff794 rs3=04f70828a9baab4019f843beeed85a85 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=007cc60225625d50100051d9d983202b addr=27 en=1
+# KERNEL:   actual   data=01296e836fec0cc01bee2c29be8ff8fb addr=27 en=1
+# KERNEL: FAIL R4 101 random 1 instr=151883b
+# KERNEL:   rs1=cf9333404605bfdac8ed787b46cd28ea rs2=d7afcaa8f0db02b6a3a5a62e27ccc191 rs3=ef65529ba3b918c5b03edb59529c3a04 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=d2309223f8a74392e5b30789bfb148e8 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 101 random 2 instr=151883b
+# KERNEL:   rs1=d20ed7ae2802d1ef83112063508c29c7 rs2=152293215b463a36d889e6d21a8865dd rs3=d6000077c581191b83f2b7b99e697091 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=ce972b9491153646963060b908b81589 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 101 random 3 instr=151883b
+# KERNEL:   rs1=4011384960238340ed4fd56e2386a172 rs2=fe26a4560577624e821ac480f1f4499e rs3=08d160dd991e17186067efe754c95843 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=4000ea451f55a17ebde6c1e896a170f2 addr=27 en=1
+# KERNEL:   actual   data=40113849602383407fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 101 random 4 instr=151883b
+# KERNEL:   rs1=aaf1df2ef1c39a001145dc7d3b7c4363 rs2=7af59d7ee438bd9901179fad891f38d6 rs3=f39807fb6f1c778e22938d69f63fdb95 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=a4fc6bda54b3768a116ba0dd5b760a58 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff1145dc7d3b7c4363 addr=27 en=1
+# KERNEL: FAIL R4 101 random 5 instr=151883b
+# KERNEL:   rs1=27a7d720f65653c1962a51613baf1134 rs2=32937f492d2275b78b29e771bdb9a3b0 rs3=c8948589ce91cc32cd33275ad8a2bb6a rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=1cb4eaf0469a5ed2ad599fa9232fa5ee addr=27 en=1
+# KERNEL:   actual   data=27a7d720f65653c17fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 101 random 6 instr=151883b
+# KERNEL:   rs1=fe7acdbb8d675b1f76cfd7b43cbd7573 rs2=b79635d7cf65bfb22c627c23fa931a0a rs3=614e128653ae52cfa08852c83a57b762 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=e2f4a2a91452a7a966428bd34809a6cb addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff76cfd7b43cbd7573 addr=27 en=1
+# KERNEL: FAIL R4 101 random 7 instr=151883b
+# KERNEL:   rs1=d4db60f7f2058dab379934fb65c724a7 rs2=8993c1f337e694b3a2784f3654a0b143 rs3=3280922ef28a0caca4a3e453e298045c rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=bd7ec31b5eaefd5558fa17b340b6eb29 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff379934fb65c724a7 addr=27 en=1
+# KERNEL: FAIL R4 101 random 8 instr=151883b
+# KERNEL:   rs1=81deb3e040a29e1bcda18ffa0df5f0a1 rs2=01d8dd94c5d3cae64dc7bc54308c4046 rs3=b4978240230dfa3ac13c3f042d4bbd4c rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=815369f399ab2b1bba8fb696e41d8df1 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 101 random 9 instr=151883b
+# KERNEL:   rs1=cbdea6942444deaf8d0b51562bfbfa05 rs2=23233796c3a39aaa68b957b916889dd7 rs3=f386b66e76b44703cde52c6ae8503a40 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=ca285a3ac16f65238000000000000000 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 101 random 10 instr=151883b
+# KERNEL:   rs1=40c14d7e5926bfe71eb7e172ac1cec19 rs2=ddefa2b5fd3cdbfe6e3a2dd2f12f4d1e rs3=52bafb25a1a071cf7276f9fb7f4879ad rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=35bf2e4d92d2bb105001044df8851aff addr=27 en=1
+# KERNEL:   actual   data=40c14d7e5926bfe71eb7e172ac1cec19 addr=27 en=1
+# KERNEL: FAIL R4 101 random 11 instr=151883b
+# KERNEL:   rs1=e1a783d299c9cf637ad5bf831d282ecd rs2=10bdd3cc0f638828748eb01690c04472 rs3=4b81fb7f4282bd186ec5d7aa5caf07fe rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=e697a0f9846ae5977fffffffffffffff addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7ad5bf831d282ecd addr=27 en=1
+# KERNEL: FAIL R4 101 random 12 instr=151883b
+# KERNEL:   rs1=017bb548d259431a7ef9adf6a7a63b0b rs2=5cb88b4cc2794ba8e044cb24b87cba67 rs3=b8ea0685281873b123b9b3c45105115f rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=e7bc912744f569967a8c112b2f5fee9b addr=27 en=1
+# KERNEL:   actual   data=017bb548d259431a7ef9adf6a7a63b0b addr=27 en=1
+# KERNEL: FAIL R4 101 random 13 instr=151883b
+# KERNEL:   rs1=234f3b1d193a5cbff11af00442a37d40 rs2=aeba45fe6b89345c4ca0e21eee42251a rs3=72f78fa97c24cdb26ba2101115ea89c7 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=fecf9666235d736d1152b1250870613e addr=27 en=1
+# KERNEL:   actual   data=234f3b1d193a5cbf7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 101 random 14 instr=151883b
+# KERNEL:   rs1=dce5e847f31731719e09d493d537722b rs2=11ebd0fdb6a7c7f5b0d4ab459f42d7bc rs3=b7678684eab481a7dd888c2868e79744 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=d7d0e8fb90de61e5a8b286cc51c3f0f3 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 101 random 15 instr=151883b
+# KERNEL:   rs1=627ca0f868caa1a2ff130a4f5566e9e5 rs2=577b5ceffd2f0e9a74de29d63dfdea5d rs3=6f4ae1cd6da04df924882112b2f7aa8b rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=7fffffffffffffff0fc06d50821a70f1 addr=27 en=1
+# KERNEL:   actual   data=627ca0f868caa1a27fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 101 random 16 instr=151883b
+# KERNEL:   rs1=e6011955ce9a8d4a28b97909d28c9d32 rs2=4567ec8385885dda63584124bfa857fb rs3=69d8f99affd1069cc20e4a221cbaf1c0 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=02b38cb2edb23f1810afa4db5f11abfa addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff28b97909d28c9d32 addr=27 en=1
+# KERNEL: FAIL R4 101 random 17 instr=151883b
+# KERNEL:   rs1=f4d617783a5f904d29039c50b54b8107 rs2=20563a30b14befd7b80d9cf638557ecc rs3=65238cdad601f2fa3da6971455d31183 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=019c9a01d02f5d2d17b009158374de3f addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff29039c50b54b8107 addr=27 en=1
+# KERNEL: FAIL R4 101 random 18 instr=151883b
+# KERNEL:   rs1=6f20d4a441d7d329e0089b4ec772845c rs2=6919712d2dc092b13b01eb2457956ec8 rs3=50208e1253e48820c7c863652e9c503b rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=7fffffffffffffffd3135e5c7d433590 addr=27 en=1
+# KERNEL:   actual   data=6f20d4a441d7d3297fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 101 random 19 instr=151883b
+# KERNEL:   rs1=21b959c8f7acbbe46e7499e5e569a433 rs2=d14b55abfa73fc32a624a26db133b279 rs3=ce03135758dacb28c451aef2906c9fa7 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=2ad813684aa38a017fffffffffffffff addr=27 en=1
+# KERNEL:   actual   data=21b959c8f7acbbe46e7499e5e569a433 addr=27 en=1
+# KERNEL: FAIL R4 101 random 20 instr=151883b
+# KERNEL:   rs1=e370f3364ce98b35bce2ff0a96fc81e9 rs2=9a3cb85a5dfe8db8fe3bd29b39817e07 rs3=3c5e058d873be7e79e2953d5f00630a2 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=cb71ce823900d6c7bd8fcf6be8ddfde0 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 101 random 21 instr=151883b
+# KERNEL:   rs1=deb717a51a0331f24170ac6168dee7bd rs2=81f0511b4a4b9467070cb9da4062707f rs3=83486ade3880c7d7fd2e157c423b7d36 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=1c211701ea96b55c415ccb14b573cf55 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff4170ac6168dee7bd addr=27 en=1
+# KERNEL: FAIL R4 101 random 22 instr=151883b
+# KERNEL:   rs1=4cf65e65865feabae807631a595be79f rs2=e9f75d03ec31518f449b1b55c46b5364 rs3=d3f4687e180cb547c35f450aea1ef4e5 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=50c0d9d24bc4ea34d7c7f5a6b953e1f1 addr=27 en=1
+# KERNEL:   actual   data=4cf65e65865feaba7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 101 random 23 instr=151883b
+# KERNEL:   rs1=d89060e143c763e3faded20c4b80803b rs2=37289b912602575bc0c79312de068479 rs3=561f579d19c856c29b4ef6f35cc0b734 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=eb1ec5ef711c12d013bc94d8c5c06651 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 101 random 24 instr=151883b
+# KERNEL:   rs1=7868a35adc8a85a6b4c7091072fef445 rs2=5687872f064c05bcfae063109c01f5cc rs3=22b289ad39b38ebce1ad05d20eb10878 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=7fffffffffffffffb5626696a2cf8765 addr=27 en=1
+# KERNEL:   actual   data=7868a35adc8a85a67fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 101 random 25 instr=151883b
+# KERNEL:   rs1=5bb3e0e2f3c4208a1b434d9f6a404006 rs2=868ae4ee3b6c3396671f759f3d66f007 rs3=e91997d63a2d0b840b555e8e157e6ce5 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=669141d85225e17e1fd40b360daee038 addr=27 en=1
+# KERNEL:   actual   data=5bb3e0e2f3c4208a1b434d9f6a404006 addr=27 en=1
+# KERNEL: FAIL R4 101 random 26 instr=151883b
+# KERNEL:   rs1=39825698e712100e2c8b8caff1dd5927 rs2=c387077e6e4a5029dbd39100b24402f3 rs3=387c59b750349366920351ae117295d4 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=2c2a8072cf3b39203c162c51ff8ae727 addr=27 en=1
+# KERNEL:   actual   data=39825698e712100e2c8b8caff1dd5927 addr=27 en=1
+# KERNEL: FAIL R4 101 random 27 instr=151883b
+# KERNEL:   rs1=7c78ea2364d09d9be275e5cbaf4a24bd rs2=a591616dfa8e88c25a51f83d9465d04e rs3=b56fdf5e439f5920e0dee5f9f4298d55 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=7fffffffffffffffd77a4afc80f92912 addr=27 en=1
+# KERNEL:   actual   data=7c78ea2364d09d9b7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 101 random 28 instr=151883b
+# KERNEL:   rs1=9ba64770b1782fa910510b7106184f97 rs2=dd0042a2dd6bbea22808f54be41b9ccf rs3=fb130a8a3553e488a0c86852fd82cbf6 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=9c52abb79e3c6efd016d06c4ff35599d addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff10510b7106184f97 addr=27 en=1
+# KERNEL: FAIL R4 101 random 29 instr=151883b
+# KERNEL:   rs1=e49651b0fe7f91307c1b74b1ee2074c4 rs2=63f2dd18edb7592f0163085e3a50d376 rs3=9328a320c36d5b7b4fd1b4d36c1c24d2 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=ba17c73073617c307c8a271b8b60723e addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7c1b74b1ee2074c4 addr=27 en=1
+# KERNEL: FAIL R4 110 saturation instr=161883b
+# KERNEL:   rs1=7fffffffffffffff8000000000000000 rs2=00000001000000010000000100000001 rs3=ffffffffffffffff0000000100000001 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=7fffffffffffffff8000000000000000 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 110 random 0 instr=161883b
+# KERNEL:   rs1=cbf7838c25535d5284829c036f543e67 rs2=a652ecdf8cdc405ae9ddb88b72bce719 rs3=3eda02ec32dc3709e8fbf5286742b3dc rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=e2d78a73fe69c4288000000000000000 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff563ab5b81bf529eb addr=27 en=1
+# KERNEL: FAIL R4 110 random 1 instr=161883b
+# KERNEL:   rs1=e8931aaba5cd5b4629f0c769dc3c6cbf rs2=61c29f5058748b504c0641a51cef3e2c rs3=c0a2b4993bfcb0deee53d02e484e3a6e rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=d3d8eeba3e358be621c4a66de7f1bdd7 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff21c4a66de7f1bdd7 addr=27 en=1
+# KERNEL: FAIL R4 110 random 2 instr=161883b
+# KERNEL:   rs1=43422a67115cd688e2e715c69471ef72 rs2=83269590dc3faf658e399b5103cd14d1 rs3=dab6a1f3fbe974f4c92546ccbeef960d rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=42b003329f42e644e3de6673abb66ad5 addr=27 en=1
+# KERNEL:   actual   data=42b003329f42e6447fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 110 random 3 instr=161883b
+# KERNEL:   rs1=fd2ef1cc3f033f3f7834cd7dcaf97d1a rs2=5b351e488c013b3d3f4c956c76f38120 rs3=4341ad5bd34b6378c77bba11215b3d7f rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=e8ed51eb82a7e3a768b504b6bc07ce3a addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff68b504b6bc07ce3a addr=27 en=1
+# KERNEL: FAIL R4 110 random 5 instr=161883b
+# KERNEL:   rs1=520078dacc45ad60a3c0186d47d11783 rs2=a5278289ddff1c31df84423f77365e87 rs3=903a2a8dc26de2d80a0860f75d5a0321 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=49d2da312345a2088000000000000000 addr=27 en=1
+# KERNEL:   actual   data=49d2da312345a20878476d84003d531c addr=27 en=1
+# KERNEL: FAIL R4 110 random 6 instr=161883b
+# KERNEL:   rs1=049c346edb8f91ced4ddc2e40467dfaa rs2=8c965c1ad230fd3f4e7a666b8cda73d6 rs3=53fa6ef62b649dec83ea1ff5f2abf9f2 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=0c5ffb04897a78bacedf0fbab749395e addr=27 en=1
+# KERNEL:   actual   data=0c5ffb04897a78ba7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 110 random 7 instr=161883b
+# KERNEL:   rs1=3bc76235c6839c52ec97ab2ba02d0c6c rs2=eec7fa6d4491ea0c50f91b60a4619f98 rs3=b9bbd867e4800d7559ae5f4fd98d53b1 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=43250b3f50f108d6ded51eaa93376c54 addr=27 en=1
+# KERNEL:   actual   data=43250b3f50f108d67fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 110 random 8 instr=161883b
+# KERNEL:   rs1=e243ff36ca4b8391b257cc057ba4631d rs2=89c9278a8ba8dc2c4555e3209de6b0f4 rs3=9623744539f0f4439b02c8395f3ebbc2 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=fc98e6e415fff40dd6d73a6ee8780e35 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 110 random 9 instr=161883b
+# KERNEL:   rs1=36305c4e98bcf2a39b09199e7656788c rs2=0dfcdda54932ead088832044bcf05a11 rs3=e1f74db815bf4a27fcc88afb56330851 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=2ff87cda78eb0cf3b19db9a88416712b addr=27 en=1
+# KERNEL:   actual   data=2ff87cda78eb0cf37fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 110 random 11 instr=161883b
+# KERNEL:   rs1=9a08cd2c87d60044009df8211d47425c rs2=0568a0b649d280255c1164139faac5b1 rs3=72bdb7617dc3b1adcb79d4d40cf7b869 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=8000000000000000057f2e7cd85df4c3 addr=27 en=1
+# KERNEL:   actual   data=75c496066cccd243057f2e7cd85df4c3 addr=27 en=1
+# KERNEL: FAIL R4 110 random 12 instr=161883b
+# KERNEL:   rs1=3e4694c9cc61cc22b81714e2dac7e6b7 rs2=54c793930f6a9ac49888a337cd58372f rs3=c5bd4108f6a79a325ab1b7be6ecf0886 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=3ed6a7015a99a9dace042487cbe08c1d addr=27 en=1
+# KERNEL:   actual   data=3ed6a7015a99a9da7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 110 random 13 instr=161883b
+# KERNEL:   rs1=b2205de7cb6e080bb9749b035164279c rs2=94289876de1dc8d7329f452a6d03a1bc rs3=8db853da620e4828e88e782282d4f722 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=bf1adaf16c882e73eec1b45eee2c48a4 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 110 random 14 instr=161883b
+# KERNEL:   rs1=eaed10a831a6b6fcd1abc91aefa471bd rs2=29f54abb08514c65313e4d33c1c4a435 rs3=8a05e047f8cf6c6b684cdd768bda552e rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=eb28ddc8cdc62cc5b56fbb6837a75737 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 110 random 15 instr=161883b
+# KERNEL:   rs1=9e56562e2e6ed931e5cc26071c655ace rs2=78ac8d92acfe5255fa41f49b8dfd2a7d rs3=5675beaab862469de7aa7a27a66020eb rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=871dbadfef691d10bde1f6b022cfba0f addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 110 random 16 instr=161883b
+# KERNEL:   rs1=0cf3ccd9a7907bcffa0373d90ee0c656 rs2=c9e347fc21c3d0df42ac6f4bf7ac930c rs3=bf6faf037e277e4fa80a9df6551bf82f rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=fc50368e475c44fefcc80fe4e97a2722 addr=27 en=1
+# KERNEL:   actual   data=fc50368e475c44fe7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 110 random 17 instr=161883b
+# KERNEL:   rs1=7190c7c2384b78d2fed1ebe442f3b0b8 rs2=214520090ca9da336a3c4da9a17b9ebd rs3=1ccb0bf1629f747517937993a3cfb8f6 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=6cafdef96c1ea383dcc885e38a3e4f1a addr=27 en=1
+# KERNEL:   actual   data=6cafdef96c1ea3837fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 110 random 18 instr=161883b
+# KERNEL:   rs1=fc3ab5789ab7f33acf0080207a13cc7d rs2=4cf91150bb502f68bad7f7b03d7b16d5 rs3=3da4ccf3c097990916d0af7bc3a0fc2c rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=eb376e1622392092dd802b133a5233e1 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 110 random 20 instr=161883b
+# KERNEL:   rs1=e284c7f6ba31080179f82d23be1e00ac rs2=05907f45249bff980c153803924b1b6f rs3=9f7bc1a4f75d3867f4a26ef6ab448ccf rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=e3c0ef365d4bf1d955a87da3f1e61deb addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff55a87da3f1e61deb addr=27 en=1
+# KERNEL: FAIL R4 110 random 21 instr=161883b
+# KERNEL:   rs1=a52d0540b543ae74e18dcac6281d4421 rs2=2ae0d6add0f4c50de77af9b773606287 rs3=d2b34e3d6278cce8bab4f7b4d5ea2371 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=b74584bcf252beacf485753faab3518a addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 110 random 25 instr=161883b
+# KERNEL:   rs1=aea812ffedc920aceefd55726e78665b rs2=edf183f2892ae1d142431c8b0f7256cb rs3=b6656c3d06bfe59ece2d622dd8e8a875 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=b1ca254c8862ccaef159293966498394 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 110 random 27 instr=161883b
+# KERNEL:   rs1=7b67d3302608ac9f8dec029dd7d861c9 rs2=4e6d8eac99a0db19e46130d4da78cb95 rs3=4b7ab4d08995803f085fb8facb46d58b rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=4c0d61b20359417886316709e520dee2 addr=27 en=1
+# KERNEL:   actual   data=4c0d61b2035941787fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 110 random 28 instr=161883b
+# KERNEL:   rs1=43d7e3d11948e6e3abb87fc9a7a2198a rs2=c0a51eb2d5151a9055ba0638ecccfa91 rs3=eabf44d9a61010f17cf329ec0e072e83 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=34c400ad25c1e553acc5d3f7ddc0d357 addr=27 en=1
+# KERNEL:   actual   data=34c400ad25c1e5537fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 110 random 29 instr=161883b
+# KERNEL:   rs1=71cceede669e8573827cf8edef20a02a rs2=2a7bc4a63be66b29d6618c9d3ec9ed7d rs3=6af4a0b08ddc18f09ba11fe5a4780625 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=7fffffffffffffff98f01a1db9c85f19 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 111 distinct upper/lower operands instr=171883b
+# KERNEL:   rs1=00000000000000000000000000000000 rs2=fffe0003fffe0003fffe0003fffe0003 rs3=0004fffb0004fffb0004fffb0004fffb rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=00000009ffe7000f00000009ffe7000f addr=27 en=1
+# KERNEL:   actual   data=00000000000000000000000000000000 addr=27 en=1
+# KERNEL: FAIL R4 111 saturation instr=171883b
+# KERNEL:   rs1=7fffffffffffffff8000000000000000 rs2=00000001000000010000000100000001 rs3=ffffffffffffffff0000000100000001 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=7fffffffffffffff8000000000000000 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 111 random 0 instr=171883b
+# KERNEL:   rs1=661e14aeb5b393d36cb5d4b0df04ae3d rs2=7faa2357e3319bb02a89dc9cf38de959 rs3=7565437bd2ee5e1bbedaf8ef73b291c9 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=2b92d2c12361d4067788fccdf5c09899 addr=27 en=1
+# KERNEL:   actual   data=661e14aeb5b393d36cb5d4b0df04ae3d addr=27 en=1
+# KERNEL: FAIL R4 111 random 1 instr=171883b
+# KERNEL:   rs1=430a00576455f3825b4185c73f6aa01f rs2=663dcb2afc510a905ec084954d9de6ed rs3=0590d2079b4265d6c02759cb4f8446d2 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=40d0f4bbce5cf15c72e3165c3bf6b0f8 addr=27 en=1
+# KERNEL:   actual   data=430a00576455f3825b4185c73f6aa01f addr=27 en=1
+# KERNEL: FAIL R4 111 random 2 instr=171883b
+# KERNEL:   rs1=f0a3efed38ac0fa8aae531d40a069eb8 rs2=46350a140e996845217941442607fc56 rs3=28036e892119723aa3aa5450e0f2d0fc rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=e5aab56a9db912f4b6f7f8fe278fe978 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 111 random 3 instr=171883b
+# KERNEL:   rs1=798307fd3ce701076a6361805a5e2e8f rs2=7e6e7ad88a12ae021eba13a2665b50d1 rs3=e6b57f946e5cb77b907f7f027e3bf6e5 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=7fffffffffffffff77c57c88efcea94b addr=27 en=1
+# KERNEL:   actual   data=798307fd3ce701076a6361805a5e2e8f addr=27 en=1
+# KERNEL: FAIL R4 111 random 4 instr=171883b
+# KERNEL:   rs1=9f460e49052b2e20da0a75d717a65112 rs2=a0042f83baeb14a345ee2fffcbd386c6 rs3=002d865b55715599d74739ef0b2218de rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=9f571fec98c8b88fe52a26a44cdebb01 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 111 random 5 instr=171883b
+# KERNEL:   rs1=48a2e7c5bcdab3a56173dee4dbf5a424 rs2=486393256eb817d5f7ac825e5b71c818 rs3=702ae0288a46e24b2b439cce6b3635f3 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=28eb37acf87955dd62dc17f287197480 addr=27 en=1
+# KERNEL:   actual   data=48a2e7c5bcdab3a56173dee4dbf5a424 addr=27 en=1
+# KERNEL: FAIL R4 111 random 6 instr=171883b
+# KERNEL:   rs1=d7da75d19e4b211f079c4f8d751e2be8 rs2=c8685ed2ba1bd1842861c4104565e0ac rs3=c8a98f1d09cf8f294878ca5a40bca339 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=cbd61cbcf4df1555fc2dc2a9b68a9e48 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff079c4f8d751e2be8 addr=27 en=1
+# KERNEL: FAIL R4 111 random 7 instr=171883b
+# KERNEL:   rs1=5fc6aeb96b7a55e191c86ab146f2b2cd rs2=beb23dd9c75339850e8d5e94405e1338 rs3=57d4662980a338185fb7a4eb0401e157 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=762e4a28e595f8208c578429d2ca10f1 addr=27 en=1
+# KERNEL:   actual   data=5fc6aeb96b7a55e17fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 111 random 8 instr=171883b
+# KERNEL:   rs1=ba920d6b6fcc8a2c3810a5801b37ebdb rs2=4499fd4280cc1585b4db97ad0d54944f rs3=ee3c344e338ce5fb19892057beb93c58 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=bf54bf1e89f7f8103f8f73aa210cc010 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff3810a5801b37ebdb addr=27 en=1
+# KERNEL: FAIL R4 111 random 9 instr=171883b
+# KERNEL:   rs1=7ebcb478de7fd0a480325b1afb49c33d rs2=42d4628e2667a532fb1ec2c5307dd7a9 rs3=37a7cb11b26c91985fdbad085f8f21b0 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=703545bd379cab36820620cf9f2d8c15 addr=27 en=1
+# KERNEL:   actual   data=7ebcb478de7fd0a47fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 111 random 10 instr=171883b
+# KERNEL:   rs1=d8a4e04daf8f9bf369a34d6c68d1890f rs2=0c3605aa54c156a82a3c73827e531bb7 rs3=4b49fc42c76d32c96d5b785f11b5588c rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=d50d8534f094ce1f579878e4fd07bbd1 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff69a34d6c68d1890f addr=27 en=1
+# KERNEL: FAIL R4 111 random 11 instr=171883b
+# KERNEL:   rs1=279584b3a17d14bc06200f473809e269 rs2=ed6cca35f3ef0f1e2fd2eda7d298df67 rs3=c55feaee1e5167e4a5c17e48dd17885f rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=23548cfaa2d9a57616fbe42525d7d971 addr=27 en=1
+# KERNEL:   actual   data=279584b3a17d14bc06200f473809e269 addr=27 en=1
+# KERNEL: FAIL R4 111 random 12 instr=171883b
+# KERNEL:   rs1=80a73184c2174bc3b94513c2e539acac rs2=0720d3f4aafad3d10be64e2ebcf12e35 rs3=276b4ba2d1c7416c3564a81e0c5ab9aa rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=8000000000000000b6c9b7cc4cf65348 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 111 random 13 instr=171883b
+# KERNEL:   rs1=9ec49ab0df30945a3d755ed122873f0c rs2=70081292670bdf319e8c29a3a945ee73 rs3=c4a96fe2bb8dfdf9653374c2180abd0b rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=b8bc58c06da0e17663fba8e9def8d586 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff3d755ed122873f0c addr=27 en=1
+# KERNEL: FAIL R4 111 random 14 instr=171883b
+# KERNEL:   rs1=61255f70da6c930fc5a113269949b65f rs2=4d4cc09ddd176e4c3a8f9bc2bc5f9dd9 rs3=615138e82ffec2656c33e5f7b8a4a489 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=43c2c3fd940eacc7ace09e39c2bfe431 addr=27 en=1
+# KERNEL:   actual   data=61255f70da6c930f7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 111 random 15 instr=171883b
+# KERNEL:   rs1=77ceecc9f53ccc94efa959492cce3725 rs2=ac7871bd933fd2788da7045464912850 rs3=3bc74da2e27b9a3985faaf0005c5bb1f rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=7fffffffffffffffb928916e22d0cb25 addr=27 en=1
+# KERNEL:   actual   data=77ceecc9f53ccc947fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 111 random 16 instr=171883b
+# KERNEL:   rs1=cb64974473f7c0ef03665bf31a6351d8 rs2=72228c37680293442c4fed4745c1c4fc rs3=2a992fe686a64c576779e07c5deaa687 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=b866a042be50ae85f17d1ad8fc7f4374 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff03665bf31a6351d8 addr=27 en=1
+# KERNEL: FAIL R4 111 random 17 instr=171883b
+# KERNEL:   rs1=320547ec2cf8dee333f755b0eda4f575 rs2=7f2a49a2f93caca077fcd60d658a0588 rs3=1fed0cf85e4acfe83e528d82121a9f48 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=2229686a3793f1f316c1688a073119db addr=27 en=1
+# KERNEL:   actual   data=320547ec2cf8dee333f755b0eda4f575 addr=27 en=1
+# KERNEL: FAIL R4 111 random 18 instr=171883b
+# KERNEL:   rs1=21665888c325db9e4543ebb4a6b79c4b rs2=3a899ae8081e354b7f33e03731d183b6 rs3=e66d653f15df6d8923bc25f841d6eb03 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=273f4e86ac63348633825716bfaa7403 addr=27 en=1
+# KERNEL:   actual   data=21665888c325db9e4543ebb4a6b79c4b addr=27 en=1
+# KERNEL: FAIL R4 111 random 19 instr=171883b
+# KERNEL:   rs1=e6087b1afe503aa453b151fe8ca19f04 rs2=4b0f8b8099a4f97db1cc9951789ed926 rs3=93cce743f59ed8b1f8578239e7ef04fa rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=05c2054ea85e3824515a72087db159fb addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff53b151fe8ca19f04 addr=27 en=1
+# KERNEL: FAIL R4 111 random 20 instr=171883b
+# KERNEL:   rs1=f38cc8984ff011fb4144f4abce7dd9f1 rs2=69cdffea415fd5d6dce65e00a4dbcd67 rs3=9d1019eaabcecd669b22dbe82eae20e2 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=1c70caf9fb064c1733709f500f4ea9f1 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff4144f4abce7dd9f1 addr=27 en=1
+# KERNEL: FAIL R4 111 random 21 instr=171883b
+# KERNEL:   rs1=ba1552ea83e75698ef01a29d4d1b109a rs2=9effeb6bae52de8763b8125b77ebe63c rs3=f017b1f481fffe21387f300ec376f3ea rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=b40e4c108f98f99cd8ffd3905273ffa0 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 111 random 22 instr=171883b
+# KERNEL:   rs1=037dd6249b9b3d0a5c7b754d19ffbb86 rs2=d6e2590a34169ec0593d2b87155bc630 rs3=0fafaeb42b3a5dff600ec67b058ef00c rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=0602ca413819d6023aff5e71e88f67a9 addr=27 en=1
+# KERNEL:   actual   data=037dd6249b9b3d0a5c7b754d19ffbb86 addr=27 en=1
+# KERNEL: FAIL R4 111 random 23 instr=171883b
+# KERNEL:   rs1=c056650521fb7a66b7a9f1ed82fa2c48 rs2=cdabe3cbecfafc593c4346960ae4055d rs3=22ec9a11105b1329be67da5bb3d25d94 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=c73414981d653bebc71ad7a8129a58f6 addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 111 random 24 instr=171883b
+# KERNEL:   rs1=cb232cb0f94571727d271fc2e8a133cb rs2=b8bb7a2c09508bc420b6c8a135ba7078 rs3=c92187bceaa79d85d365a017b78efeee rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=bbdcc98f267e85227fffffffffffffff addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7d271fc2e8a133cb addr=27 en=1
+# KERNEL: FAIL R4 111 random 25 instr=171883b
+# KERNEL:   rs1=07b9abaad3b39815ea8d8fc054b1b6df rs2=8a8088dd8c416033ff84442314f8da21 rs3=8076afb4ff03fd9e148d246f12132ab4 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=cd30697efde649b1ea977ea5ad7c3fb2 addr=27 en=1
+# KERNEL:   actual   data=07b9abaad3b398157fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 111 random 26 instr=171883b
+# KERNEL:   rs1=47e4f8149f17a0ff12c691676949dd04 rs2=0dc3e8c4c414a4066f379f9981f8ea6a rs3=9161bff7968fe7d265c2c0d5ecdb87f8 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=4dd7a873f623cfe3e6910382d95d52b7 addr=27 en=1
+# KERNEL:   actual   data=47e4f8149f17a0ff12c691676949dd04 addr=27 en=1
+# KERNEL: FAIL R4 111 random 27 instr=171883b
+# KERNEL:   rs1=0507f12a1cd83595fc1510dd1de2c575 rs2=8f1a2c3032968577dbf13959992898a6 rs3=e436418a9ff14fbb36b0210dabf1d8cf rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=f8c6bb61416433b503c8fd94a70e62f0 addr=27 en=1
+# KERNEL:   actual   data=0507f12a1cd835957fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 111 random 28 instr=171883b
+# KERNEL:   rs1=a37d77fc6c314c20eac0da4d08d5ee79 rs2=2fa5275cdee84389629484af324b3b74 rs3=6af5acac3f80d7df61fa160265437f1f rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=8f955c7eafbd0a50c50646839e5fdb1b addr=27 en=1
+# KERNEL:   actual   data=7fffffffffffffff7fffffffffffffff addr=27 en=1
+# KERNEL: FAIL R4 111 random 29 instr=171883b
+# KERNEL:   rs1=0f3c0b6b40286636aeb93e7f0e73bae6 rs2=f623d0277c72672e227adc3ee4975b0b rs3=ffb408579026f19be200b1ebb0b6a7a9 rd_in=00000000000000000000000000000000
+# KERNEL:   expected data=0f391e5f470f70f5b2c38c57b964affc addr=27 en=1
+# KERNEL:   actual   data=0f3c0b6b402866367fffffffffffffff addr=27 en=1
+# KERNEL: Fatal Error: mips_alu_tb.sv (281): FAILED: 231 of 928 checks
+# RUNTIME: Info: RUNTIME_0068 mips_alu_tb.sv (281): $finish called.
+# KERNEL: Time: 928 ns,  Iteration: 0,  Instance: /mips_alu_tb,  Process: @INITIAL#stimulus@.
+# KERNEL: stopped at time: 928 ns
+# VSIM: Simulation has finished. There are no more test vectors to simulate.
+endsim
+# VSIM: Simulation has finished.
