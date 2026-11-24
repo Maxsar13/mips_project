@@ -4,3 +4,5 @@ i<>.\src\data_forward.sv
 i<>.\src\cpu_top.sv
 i<>.\src\if_id_reg.sv
 i<>.\src\id_ex_reg.sv
+i<>.\src\ex_wb_reg.sv
+i<>.\src\instruction_buffer.sv

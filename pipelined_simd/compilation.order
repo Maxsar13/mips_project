@@ -4,3 +4,5 @@
 .\src\cpu_top.sv
 .\src\if_id_reg.sv
 .\src\id_ex_reg.sv
+.\src\ex_wb_reg.sv
+.\src\instruction_buffer.sv
