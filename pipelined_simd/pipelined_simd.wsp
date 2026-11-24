@@ -51,3 +51,7 @@ Status=Compiled
 FileTimeLow=2265733888
 FileTimeHigh=31292372
 Status=Modified
+[COMPILESTATUS|.\src\forward_muxes.sv]
+FileTimeLow=785995520
+FileTimeHigh=31292380
+Status=Compiled
