@@ -25,6 +25,7 @@ FAMILY=
 /id_ex_reg.sv=-1
 /ex_wb_reg.sv=-1
 /instruction_buffer.sv=-1
+/forward_muxes.sv=-1
 [Files.Data]
 .\src\mips_alu.sv=SystemVerilog Source Code
 .\src\mips_alu_tb.sv=SystemVerilog Source Code
@@ -34,6 +35,7 @@ FAMILY=
 .\src\id_ex_reg.sv=SystemVerilog Source Code
 .\src\ex_wb_reg.sv=SystemVerilog Source Code
 .\src\instruction_buffer.sv=SystemVerilog Source Code
+.\src\forward_muxes.sv=SystemVerilog Source Code
 [HierarchyViewer]
 HierarchyInformation=
 ShowHide=ShowTopLevel

@@ -6,3 +6,4 @@ i<>.\src\if_id_reg.sv
 i<>.\src\id_ex_reg.sv
 i<>.\src\ex_wb_reg.sv
 i<>.\src\instruction_buffer.sv
+i<>.\src\forward_muxes.sv

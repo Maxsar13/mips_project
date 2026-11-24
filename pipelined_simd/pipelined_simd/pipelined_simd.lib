@@ -1,25 +1,26 @@
-timestamp=1795497858668
+timestamp=1795500429328
 
 [~A]
-E:/ESE 345 Project/mips_project/pipelined_simd/src/data_forward.sv=0*30232*30802
+E:/ESE 345 Project/mips_project/pipelined_simd/src/data_forward.sv=0*38112*38634
+E:/ESE 345 Project/mips_project/pipelined_simd/src/if_id_reg.sv=0*34971*35474
 E:/ESE 345 Project/mips_project/pipelined_simd/src/instruction_buffer.sv=0*31796*32388
 E:/ESE 345 Project/mips_project/pipelined_simd/src/mips_alu.sv=0*15384*17791
 E:/ESE 345 Project/mips_project/pipelined_simd/src/mips_alu.sv_mips_alu_tb.sv=0*19413*25819
 E:/ESE 345 Project/mips_project/pipelined_simd/src/mips_alu_tb.sv=0*9994*14420
-LastVerilogToplevel=instruction_buffer
-ModifyID=9
+LastVerilogToplevel=data_forward
+ModifyID=13
 Version=74
 
 [~MFT]
-0=4|0pipelined_simd.mgf|32388|10284
-1=3|1pipelined_simd.mgf|56514|38580
-3=6|3pipelined_simd.mgf|124888|83426
+0=6|0pipelined_simd.mgf|38634|13603
+1=4|1pipelined_simd.mgf|63501|44220
+3=8|3pipelined_simd.mgf|130732|89100
 
 [$root]
-A/$root=22|||1*56108
-BinW64/$root=3*123804
-SLP=3*123919
-Version=17.0.292.10043 (Windows64)|0000000b789cd3f53752d02d2e33ca3632060010ad02e7|c73a565f2ade592f8ac1c68f484c921608454e80348c7e939a1bf6d04a56b055
+A/$root=22|||1*63079
+BinW64/$root=3*129862
+SLP=3*129977
+Version=17.0.292.10043 (Windows64)|0000000b789cd3f53752d02d2e33ca3632060010ad02e7|c73a565f2ade592f8ac1c68f484c92162d470639475f93c785644750761247a1
 
 [alu]
 A/alu=22|../src/mips_alu.sv|1|1*33990
@@ -29,11 +30,18 @@ SLP=3*86127
 Version=17.0.292.10043 (Windows64)|0000000b789cd3f53752d02d2e33ca3632060010ad02e7|fdc9c85601beb4171a6a25c637e2168e388c2fc476d885946384387951ae4950
 
 [data_forward]
-A/data_forward=22|../src/data_forward.sv|1|1*54732
-BinW64/data_forward=3*122152
+A/data_forward=22|../src/data_forward.sv|1|1*63501
+BinW64/data_forward=3*130061
 R=../src/data_forward.sv|1
-SLP=3*123333
-Version=17.0.292.10043 (Windows64)|0000000b789cd3f53752d02d2e33ca3632060010ad02e7|889bbaf8eac8a42abc1da8ced0c5942cf7b98e3fbf06ff36552799a9fa585e79d639a06fd49a1a044d048d37caf7e74f
+SLP=3*130732
+Version=17.0.292.10043 (Windows64)|0000000b789cd3f53752d02d2e33ca3632060010ad02e7|889bbaf8eac8a42abc1da8ced0c5942cf7b98e3fbf06ff36552799a9fa585e79fe7c4464e9f1afcaf3b49af8d3945a06
+
+[if_id_reg]
+A/if_id_reg=22|../src/if_id_reg.sv|1|1*60261
+BinW64/if_id_reg=3*127318
+R=../src/if_id_reg.sv|1
+SLP=3*127807
+Version=17.0.292.10043 (Windows64)|0000000b789cd3f53752d02d2e33ca3632060010ad02e7|7292c8fe4905a19725bcd69dc9d1075d9380a9e32e9f30f44cd95fc68443ac28e2c553eaf4810390fbc84dc414817287
 
 [instruction_buffer]
 A/instruction_buffer=22|../src/instruction_buffer.sv|1|1*56514
@@ -50,8 +58,9 @@ SLP=3*105637
 Version=17.0.292.10043 (Windows64)|0000000b789cd3f53752d02d2e33ca3632060010ad02e7|30113993820f675f4a1c0b1907dedc16d08091ba56ea63ea7df4360bcc8cc62aa4fb5b9082c58a7767b798cb6c3e54a5
 
 [~U]
-$root=12|0*31349|
+$root=12|0*37608|
 alu=12|0*18500|
-data_forward=12|0*29963||0x10
+data_forward=12|0*37838||0x10
+if_id_reg=12|0*34745||0x10
 instruction_buffer=12|0*31563||0x10
 mips_alu_tb=12|0*18752||0x10

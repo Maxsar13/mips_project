@@ -6,3 +6,4 @@
 .\src\id_ex_reg.sv
 .\src\ex_wb_reg.sv
 .\src\instruction_buffer.sv
+.\src\forward_muxes.sv
