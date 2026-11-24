@@ -1,27 +1,29 @@
-timestamp=1795501351105
+timestamp=1795543812210
 
 [~A]
-E:/ESE 345 Project/mips_project/pipelined_simd/src/data_forward.sv=0*38112*38634
-E:/ESE 345 Project/mips_project/pipelined_simd/src/forward_muxes.sv=0*39722*40277
-E:/ESE 345 Project/mips_project/pipelined_simd/src/if_id_reg.sv=0*34971*35474
-E:/ESE 345 Project/mips_project/pipelined_simd/src/instruction_buffer.sv=0*31796*32388
+E:/ESE 345 Project/mips_project/pipelined_simd/src/data_forward.sv=0*44559*45081
+E:/ESE 345 Project/mips_project/pipelined_simd/src/ex_wb_reg.sv=0*49434*50033
+E:/ESE 345 Project/mips_project/pipelined_simd/src/forward_muxes.sv=0*46169*46724
+E:/ESE 345 Project/mips_project/pipelined_simd/src/id_ex_reg.sv=0*41358*42005
+E:/ESE 345 Project/mips_project/pipelined_simd/src/if_id_reg.sv=0*43008*43511
+E:/ESE 345 Project/mips_project/pipelined_simd/src/instruction_buffer.sv=0*47751*48343
 E:/ESE 345 Project/mips_project/pipelined_simd/src/mips_alu.sv=0*15384*17791
 E:/ESE 345 Project/mips_project/pipelined_simd/src/mips_alu.sv_mips_alu_tb.sv=0*19413*25819
 E:/ESE 345 Project/mips_project/pipelined_simd/src/mips_alu_tb.sv=0*9994*14420
-LastVerilogToplevel=forward_muxes
-ModifyID=14
+LastVerilogToplevel=ex_wb_reg
+ModifyID=20
 Version=74
 
 [~MFT]
-0=4|0pipelined_simd.mgf|40277|13603
-1=3|1pipelined_simd.mgf|65708|44642
-3=6|3pipelined_simd.mgf|132136|89299
+0=4|0pipelined_simd.mgf|50033|17967
+1=3|1pipelined_simd.mgf|79173|53868
+3=6|3pipelined_simd.mgf|139643|94725
 
 [$root]
-A/$root=22|||1*65286
-BinW64/$root=3*131033
-SLP=3*131148
-Version=17.0.292.10043 (Windows64)|0000000b789cd3f53752d02d2e33ca3632060010ad02e7|c73a565f2ade592f8ac1c68f484c9216622c7997c416dea539c2d44f14fe307a
+A/$root=22|||1*78735
+BinW64/$root=3*138831
+SLP=3*138946
+Version=17.0.292.10043 (Windows64)|0000000b789cd3f53752d02d2e33ca3632060010ad02e7|c73a565f2ade592f8ac1c68f484c92167e2486f33d82594def26c6590691e7de
 
 [alu]
 A/alu=22|../src/mips_alu.sv|1|1*33990
@@ -31,32 +33,46 @@ SLP=3*86127
 Version=17.0.292.10043 (Windows64)|0000000b789cd3f53752d02d2e33ca3632060010ad02e7|fdc9c85601beb4171a6a25c637e2168e388c2fc476d885946384387951ae4950
 
 [data_forward]
-A/data_forward=22|../src/data_forward.sv|1|1*63501
-BinW64/data_forward=3*130061
+A/data_forward=22|../src/data_forward.sv|1|1*72337
+BinW64/data_forward=3*134934
 R=../src/data_forward.sv|1
-SLP=3*130732
-Version=17.0.292.10043 (Windows64)|0000000b789cd3f53752d02d2e33ca3632060010ad02e7|889bbaf8eac8a42abc1da8ced0c5942cf7b98e3fbf06ff36552799a9fa585e79fe7c4464e9f1afcaf3b49af8d3945a06
+SLP=3*135605
+Version=17.0.292.10043 (Windows64)|0000000b789cd3f53752d02d2e33ca3632060010ad02e7|889bbaf8eac8a42abc1da8ced0c5942cf7b98e3fbf06ff36552799a9fa585e797ad3ae452cc7dcbc40ce64becf77a075
+
+[ex_wb_reg]
+A/ex_wb_reg=22|../src/ex_wb_reg.sv|1|1*79173
+BinW64/ex_wb_reg=3*139030
+R=../src/ex_wb_reg.sv|1
+SLP=3*139643
+Version=17.0.292.10043 (Windows64)|0000000b789cd3f53752d02d2e33ca3632060010ad02e7|244f85e6ace7f15a7627613818fbfa131abc7d99fa60964a20020dd4f661265605721358cda044e13068929e83374d99
 
 [forward_muxes]
-A/forward_muxes=22|../src/forward_muxes.sv|1|1*65708
-BinW64/forward_muxes=3*131232
+A/forward_muxes=22|../src/forward_muxes.sv|1|1*74560
+BinW64/forward_muxes=3*136105
 R=../src/forward_muxes.sv|1
-SLP=3*132136
-Version=17.0.292.10043 (Windows64)|0000000b789cd3f53752d02d2e33ca3632060010ad02e7|3fa9d9659eaa7a4f55b9a6c04e1f4a9589c53fae54ccec63d17438103dccf4892b0847c0c6fd2c602d19a3d07a5d9c17
+SLP=3*137009
+Version=17.0.292.10043 (Windows64)|0000000b789cd3f53752d02d2e33ca3632060010ad02e7|3fa9d9659eaa7a4f55b9a6c04e1f4a9589c53fae54ccec63d17438103dccf489731e21a8f84387c0b1411244c8d3d957
+
+[id_ex_reg]
+A/id_ex_reg=22|../src/id_ex_reg.sv|1|1*68268
+BinW64/id_ex_reg=3*132655
+R=../src/id_ex_reg.sv|1
+SLP=3*133333
+Version=17.0.292.10043 (Windows64)|0000000b789cd3f53752d02d2e33ca3632060010ad02e7|6ce8af50540d26992a065f478f15145edfc7522c7c3381981427e4f29033fa8870248db4ad34b12410bd886ec923490f
 
 [if_id_reg]
-A/if_id_reg=22|../src/if_id_reg.sv|1|1*60261
-BinW64/if_id_reg=3*127318
+A/if_id_reg=22|../src/if_id_reg.sv|1|1*70721
+BinW64/if_id_reg=3*133989
 R=../src/if_id_reg.sv|1
-SLP=3*127807
-Version=17.0.292.10043 (Windows64)|0000000b789cd3f53752d02d2e33ca3632060010ad02e7|7292c8fe4905a19725bcd69dc9d1075d9380a9e32e9f30f44cd95fc68443ac28e2c553eaf4810390fbc84dc414817287
+SLP=3*134478
+Version=17.0.292.10043 (Windows64)|0000000b789cd3f53752d02d2e33ca3632060010ad02e7|7292c8fe4905a19725bcd69dc9d1075d9380a9e32e9f30f44cd95fc68443ac28f1863d64a477ca030850368bef1becd7
 
 [instruction_buffer]
-A/instruction_buffer=22|../src/instruction_buffer.sv|1|1*56514
-BinW64/instruction_buffer=3*124003
+A/instruction_buffer=22|../src/instruction_buffer.sv|1|1*77120
+BinW64/instruction_buffer=3*137528
 R=../src/instruction_buffer.sv|1
-SLP=3*124888
-Version=17.0.292.10043 (Windows64)|0000000b789cd3f53752d02d2e33ca3632060010ad02e7|ca35fc9534a8cfce866c0066a9a678c8b13dc95af3c1d8385f3b18fdce3ab3d7f27acd780c2dfe6823df534e7837260c
+SLP=3*138413
+Version=17.0.292.10043 (Windows64)|0000000b789cd3f53752d02d2e33ca3632060010ad02e7|ca35fc9534a8cfce866c0066a9a678c8b13dc95af3c1d8385f3b18fdce3ab3d742ace2d04772a6a0952ec86700136ed2
 
 [mips_alu_tb]
 A/mips_alu_tb=22|../src/mips_alu_tb.sv|5|1*39205
@@ -66,10 +82,12 @@ SLP=3*105637
 Version=17.0.292.10043 (Windows64)|0000000b789cd3f53752d02d2e33ca3632060010ad02e7|30113993820f675f4a1c0b1907dedc16d08091ba56ea63ea7df4360bcc8cc62aa4fb5b9082c58a7767b798cb6c3e54a5
 
 [~U]
-$root=12|0*39181|
+$root=12|0*48896|
 alu=12|0*18500|
-data_forward=12|0*37838||0x10
-forward_muxes=12|0*39427||0x10
-if_id_reg=12|0*34745||0x10
-instruction_buffer=12|0*31563||0x10
+data_forward=12|0*44285||0x10
+ex_wb_reg=12|0*49158||0x10
+forward_muxes=12|0*45874||0x10
+id_ex_reg=12|0*41071||0x10
+if_id_reg=12|0*42779||0x10
+instruction_buffer=12|0*47518||0x10
 mips_alu_tb=12|0*18752||0x10
