@@ -2,3 +2,5 @@
 .\src\mips_alu_tb.sv
 .\src\data_forward.sv
 .\src\cpu_top.sv
+.\src\if_id_reg.sv
+.\src\id_ex_reg.sv

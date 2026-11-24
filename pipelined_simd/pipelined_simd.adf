@@ -21,11 +21,15 @@ FAMILY=
 /mips_alu_tb.sv=-1
 /data_forward.sv=-1
 /cpu_top.sv=-1
+/if_id_reg.sv=-1
+/id_ex_reg.sv=-1
 [Files.Data]
 .\src\mips_alu.sv=SystemVerilog Source Code
 .\src\mips_alu_tb.sv=SystemVerilog Source Code
 .\src\data_forward.sv=SystemVerilog Source Code
 .\src\cpu_top.sv=SystemVerilog Source Code
+.\src\if_id_reg.sv=SystemVerilog Source Code
+.\src\id_ex_reg.sv=SystemVerilog Source Code
 [HierarchyViewer]
 HierarchyInformation=
 ShowHide=ShowTopLevel
