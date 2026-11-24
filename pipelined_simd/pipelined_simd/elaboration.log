@@ -1,4 +1,4 @@
-Active-HDL 17.0.292.10043 2026-10-25 00:03:50
+Active-HDL 17.0.292.10043 2026-11-23 23:05:33
 
 Elaboration top modules:
 Verilog Module                mips_alu_tb
@@ -16,9 +16,3 @@ Library                 | Comment
 ---------------------------------------------------------------------------------------------------
 pipelined_simd          | None
 ---------------------------------------------------------------------------------------------------
-
-
-Simulation Options: asim -O5 +access +r +m+mips_alu_tb mips_alu_tb
-
-
-The performance of simulation is reduced. Version Student Edition

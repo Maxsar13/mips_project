@@ -1,2 +1,4 @@
 .\src\mips_alu.sv
 .\src\mips_alu_tb.sv
+.\src\data_forward.sv
+.\src\cpu_top.sv
