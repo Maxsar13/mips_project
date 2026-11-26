@@ -4,7 +4,7 @@
 
 module mips_alu_tb;
     logic [24:0] instr;
-    logic [127:0] rs1, rs2, rs3, rd_in;
+    logic [127:0] rs1, rs2, rs3;
     wire [127:0] rd_out;
     wire [4:0] wr_addr;
     wire write_en;
@@ -15,7 +15,7 @@ module mips_alu_tb;
 
     //instance
     alu dut (
-        .instr(instr), .rs1(rs1), .rs2(rs2), .rs3(rs3), .rd_in(rd_in),
+        .instr(instr), .rs1(rs1), .rs2(rs2), .rs3(rs3),
         .rd_out(rd_out), .wr_addr(wr_addr), .write_en(write_en)
     );
 
@@ -89,7 +89,7 @@ module mips_alu_tb;
                         4'b1000: result[i +: 32] = ($signed(aw) < $signed(bw)) ? aw : bw; // Minimum signed word
                         4'b1001: result[i +: 32] = 32'(aw[15:0]) * 32'(bw[15:0]); // Multiply low unsigned halfwords
                         4'b1010: result[i +: 32] = 32'(aw[15:0]) * 32'(imm); // Multiply low unsigned halfword by immediate
-                        4'b1100: begin // Count leading zeroes in word
+                        4'b1100: begin // count leading zeroes in word
                             count = 0;
                             found = 0;
                             for (int j = 31; j >= 0; j--) begin
@@ -99,7 +99,7 @@ module mips_alu_tb;
                             result[i +: 32] = count;
                         end
                         4'b1101: begin // Rotate word right
-                            amount = imm;
+                            amount = b[i +: 5];
                             result[i +: 32] = (amount == 0) ? aw
                                 : (aw >> amount) | (aw << (32 - amount));
                         end
@@ -112,8 +112,9 @@ module mips_alu_tb;
         return result;
     endfunction
 
-    // mode[2]: 32x32 -> 64 (otherwise 16x16 -> 32).
-    // mode[1]: subtract product; mode[0]: upper operand halves.
+    // mode[2] 32x32 -> 64 (otherwise 16x16 -> 32)
+    // mode[1] subtract product
+    // mode[0]: upper operand halves
     function automatic logic [127:0] r4_expected(
         input logic [2:0] mode,
         input logic [127:0] accumulator, a, b
@@ -159,7 +160,7 @@ module mips_alu_tb;
         input logic [127:0] expected,
         input bit expected_write
     );
-        // No clock: let the combinational ALU settle after changing inputs.
+        // let the combinational ALU settle after changing inputs
         #1;
         checks++;
         if ((write_en !== expected_write) ||
@@ -167,7 +168,7 @@ module mips_alu_tb;
                                 (wr_addr !== instr[4:0])))) begin
             failures++;
             $display("FAIL %s instr=%h", label_text, instr);
-            $display("  rs1=%h rs2=%h rs3=%h rd_in=%h", rs1, rs2, rs3, rd_in);
+            $display("  rs1=%h rs2=%h rs3=%h", rs1, rs2, rs3);
             $display("  expected data=%h addr=%0d en=%b", expected, instr[4:0], expected_write);
             $display("  actual   data=%h addr=%0d en=%b", rd_out, wr_addr, write_en);
         end
@@ -182,9 +183,7 @@ module mips_alu_tb;
         instr = r3_instr(opcode, imm, 5'd19);
         rs1 = a;
         rs2 = b;
-        if (opcode == 4'b1101) rs2[14:10] = imm;
         rs3 = '0;
-        rd_in = '1;
         check_result(label_text, r3_expected(opcode, rs1, rs2, imm), opcode != 0);
     endtask
 
@@ -197,7 +196,6 @@ module mips_alu_tb;
         rs1 = accumulator;
         rs2 = a;
         rs3 = b;
-        rd_in = '0;
         check_result(label_text, r4_expected(mode, accumulator, a, b), 1);
     endtask
 
@@ -208,19 +206,18 @@ module mips_alu_tb;
         rs1 = '0;
         rs2 = '0;
         rs3 = '0;
-        rd_in = '0;
-        // Enable waveform output with simulator argument +dump.
+        // print waveform output from iverilog/xsim
         if ($test$plusargs("dump")) begin
             $dumpfile("mips_alu_tb.vcd");
             $dumpvars(0, mips_alu_tb);
         end
 
-        // Every imm lane and rd, preserving all other bits.
+        // every imm lane and rd
         for (int lane = 0; lane < 8; lane++) begin
             for (int rd = 0; rd < 32; rd++) begin
-                rd_in = random_vector();
+                rs1 = random_vector();
                 instr = {1'b0, 3'(lane), 16'ha55a, 5'(rd)};
-                expected = rd_in;
+                expected = rs1;
                 expected[lane * 16 +: 16] = 16'ha55a;
                 check_result($sformatf("LI lane=%0d rd=%0d", lane, rd), expected, 1);
             end
@@ -244,7 +241,11 @@ module mips_alu_tb;
         check_r3(4'b1100, 128'h00000000_00000001_80000000_00010000, '0, 0, "CLZ 32/31/0/15");
         for (int amount = 0; amount < 32; amount++)
             check_r3(4'b1101, 128'h12345678_80000001_ffffffff_00000001,
-                '0, 5'(amount), $sformatf("rotate amount=%0d", amount));
+                {4{32'(amount)}}, 0, $sformatf("rotate amount=%0d", amount));
+        check_r3(4'b1101,
+            128'h00000001_80000000_12345678_000000F0,
+            128'h00000001_0000001F_00000004_00000004,
+            0, "rotate uses a per-word rs2 amount");
 
         for (int mode = 0; mode < 8; mode++) begin
             check_r4(3'(mode), '0, '0, '0, $sformatf("R4 %b zero", 3'(mode)));
@@ -269,12 +270,12 @@ module mips_alu_tb;
                     $sformatf("R4 %b random %0d", 3'(mode), sample));
         end
 
-        // Exercise write-enable transitions after arithmetic and NOP.
+        // write-enable transitions after arithmetic and NOP
         check_r3(4'b0000, '0, '0, 0, "NOP disables write after R4");
         check_r3(4'b0101, '1, '1, 0, "AND enables write after NOP");
         check_r3(4'b0000, '0, '0, 0, "NOP disables write after R3");
         instr = {1'b0, 3'd7, 16'hffff, 5'd31};
-        rd_in = '0;
+        rs1 = '0;
         check_result("LI enables write after NOP", {16'hffff, 112'b0}, 1);
 
         if (failures != 0)
@@ -283,8 +284,6 @@ module mips_alu_tb;
         $finish;
     end
 
-    // Catches time-advancing hangs; simulator iteration limits are still needed
-    // for a zero-time infinite loop inside the DUT's combinational logic.
     initial begin
         #100000;
         $fatal(1, "Testbench timed out");

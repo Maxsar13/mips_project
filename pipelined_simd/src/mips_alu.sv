@@ -3,7 +3,6 @@ module alu(
 	input logic [127:0] rs1,
 	input logic [127:0] rs2,
 	input logic [127:0] rs3,
-	input logic [127:0] rd_in,
 	
 	output logic [127:0] rd_out,
 	output logic [4:0] wr_addr,
@@ -26,9 +25,11 @@ module alu(
 	
 	logic [15:0] op;
 	logic [16:0] saturated_op;
+	logic [5:0] cntlz_count;
+	logic cntlz_found;
 	
 	logic [31:0] rotate; 
-	logic [31:0] latch;
+	logic [31:0] rollover;
 	
 	
 	
@@ -47,15 +48,17 @@ module alu(
 		broadcast = 32'hFFFFFFFF;
 		op = '0;
 		saturated_op = '0;
+		cntlz_count = '0;
+		cntlz_found = 1'b0;
 		rotate = '0;
-		latch = '0;
+		rollover = '0;
 
 		casez(instr[24:23]) //supports 'b0?
 			2'b0?: begin	 //Load Immediate instruction
 				write_en = 1'b1;
 				shift_imm = {instr[23:21], 4'b0000};   //Shift used to replace section of rd
 				imm_load = 128'hFFFF << shift_imm; //Shift mask to replaced section
-				rd_out = (rd_in & ~imm_load) | (128'(instr[20:5]) << shift_imm);   //Using mask to replace bits
+				rd_out = (rs1 & ~imm_load) | (128'(instr[20:5]) << shift_imm);   //Using mask to replace bits
 				wr_addr = instr[4:0]; 	  //Setting write address to rd
 			end
 			2'b10: begin
@@ -165,21 +168,26 @@ module alu(
 					4'b1100: begin //Count leading zeroes in words 
 						for(int i = 0; i < 128; i = i + 32)
 							begin
-								int count;
-								count = 0;
-								while ((count < 32) && (rs1[i + 31 - count] != 1'b1)) begin
-									count++;
+								cntlz_count = '0;
+								cntlz_found = 1'b0;
+								for (int j = 31; j >= 0; j--) begin
+									if (!cntlz_found) begin
+										if (rs1[i + j])
+											cntlz_found = 1'b1;
+										else
+											cntlz_count = cntlz_count + 6'd1;
+									end
 								end
-								rd_out[i+:32] = count;
+								rd_out[i+:32] = cntlz_count;
 							end						   
 						write_en = 1'b1;						
 					end
 					4'b1101: begin //Rotate bits in word
 						for(int i = 0; i < 128; i = i + 32)
 							begin
-								latch = rs1[i +: 32];
-								latch = (latch << (32 - instr[14:10]));
-								rd_out[i +: 32] = latch | (rs1[i+:32] >> instr[14:10]);	
+								rollover = rs1[i +: 32];
+								rollover = rollover << (32 - rs2[i +: 5]);
+								rd_out[i +: 32] = rollover | (rs1[i+:32] >> rs2[i +: 5]);
 							end
 					end
 					4'b1110: begin //Subtract from word unsigned
