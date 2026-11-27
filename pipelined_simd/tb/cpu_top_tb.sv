@@ -6,6 +6,8 @@ module cpu_top_tb;
     logic [24:0] nop_instruction;
     logic [127:0] expected_regs [0:31];
     integer results_file;
+    integer regfile_before_file;
+    integer regfile_after_file;
     integer cycle;
     integer failures;
     integer forwarding_events;
@@ -37,11 +39,24 @@ module cpu_top_tb;
         return line_count;
     endfunction
 
+    task automatic dump_regfile(input integer output_file, input string snapshot_name);
+        $fdisplay(output_file, "%s", snapshot_name);
+        $fdisplay(output_file, "register value");
+        for (int i = 0; i < 32; i++)
+            $fdisplay(output_file, "r%0d %032h", i, dut.regfile_inst.regs[i]);
+    endtask
+
     initial begin
         nop_instruction = 25'b11_0000_0000_00000_00000_00000;
         results_file = $fopen("tb/cpu_results.log", "w");
         if (results_file == 0)
             $fatal(1, "Could not open tb/cpu_results.log");
+        regfile_before_file = $fopen("tb/regfile_before.log", "w");
+        if (regfile_before_file == 0)
+            $fatal(1, "Could not open tb/regfile_before.log");
+        regfile_after_file = $fopen("tb/regfile_after.log", "w");
+        if (regfile_after_file == 0)
+            $fatal(1, "Could not open tb/regfile_after.log");
 
         program_length = count_file_lines("tb/cpu_program.mem");
         if (program_length == 0 || program_length > 64)
@@ -73,9 +88,12 @@ module cpu_top_tb;
         );
 
         repeat (2) @(negedge clk);
+        dump_regfile(regfile_before_file, "register file before program execution");
         rst = 1'b0;
         repeat (run_cycles) @(posedge clk);
         #1;
+
+        dump_regfile(regfile_after_file, "register file after program execution");
 
         for (int i = 0; i < 32; i++) begin
             if (dut.regfile_inst.regs[i] !== expected_regs[i]) begin
@@ -96,6 +114,8 @@ module cpu_top_tb;
         end
 
         $fclose(results_file);
+        $fclose(regfile_before_file);
+        $fclose(regfile_after_file);
         if (failures != 0)
             $fatal(1, "CPU regression failed: %0d register mismatches", failures);
         $display("PASS: CPU program completed with %0d register checks", 32);
