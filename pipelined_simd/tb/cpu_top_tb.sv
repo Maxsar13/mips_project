@@ -1,19 +1,18 @@
 `timescale 1ns/1ps
 
 module cpu_top_tb;
-    localparam int PROGRAM_LENGTH = 5;
-    localparam int EXPECTED_REGISTERS = 5;
-    localparam int RUN_CYCLES = 16;
-    localparam logic [24:0] NOP = 25'b11_0000_0000_00000_00000_00000;
-
     logic clk = 1'b0;
     logic rst = 1'b1;
+    logic [24:0] nop_instruction;
     logic [127:0] expected_regs [0:31];
     integer results_file;
     integer cycle;
     integer failures;
     integer forwarding_events;
     integer invalid_forwarding_events;
+    integer program_length;
+    integer expected_register_count;
+    integer run_cycles;
 
     cpu_top dut (
         .clk(clk),
@@ -22,19 +21,47 @@ module cpu_top_tb;
 
     always #5 clk = ~clk;
 
+    function automatic integer count_file_lines(input string file_name);
+        integer input_file;
+        integer line_count;
+        string line;
+
+        input_file = $fopen(file_name, "r");
+        if (input_file == 0)
+            $fatal(1, "Could not open %s", file_name);
+
+        line_count = 0;
+        while ($fgets(line, input_file))
+            line_count++;
+        $fclose(input_file);
+        return line_count;
+    endfunction
+
     initial begin
+        nop_instruction = 25'b11_0000_0000_00000_00000_00000;
         results_file = $fopen("tb/cpu_results.log", "w");
         if (results_file == 0)
             $fatal(1, "Could not open tb/cpu_results.log");
 
+        program_length = count_file_lines("tb/cpu_program.mem");
+        if (program_length == 0 || program_length > 64)
+            $fatal(1, "Program must contain between 1 and 64 instructions");
+
         for (int i = 0; i < 64; i++)
-            dut.instruction_buffer_inst.buffer[i] = NOP;
+            dut.instruction_buffer_inst.buffer[i] = nop_instruction;
         $readmemb("tb/cpu_program.mem", dut.instruction_buffer_inst.buffer, 0,
-                  PROGRAM_LENGTH - 1);
+                  program_length - 1);
 
         for (int i = 0; i < 32; i++)
             expected_regs[i] = '0;
-        $readmemh("tb/cpu_expected.mem", expected_regs, 0, EXPECTED_REGISTERS - 1);
+        expected_register_count = count_file_lines("tb/cpu_expected.mem");
+        if (expected_register_count > 32)
+            $fatal(1, "Expected-results file contains more than 32 registers");
+        if (expected_register_count != 0)
+            $readmemh("tb/cpu_expected.mem", expected_regs, 0,
+                      expected_register_count - 1);
+
+        run_cycles = program_length + 4;
 
         cycle = 0;
         failures = 0;
@@ -47,7 +74,7 @@ module cpu_top_tb;
 
         repeat (2) @(negedge clk);
         rst = 1'b0;
-        repeat (RUN_CYCLES) @(posedge clk);
+        repeat (run_cycles) @(posedge clk);
         #1;
 
         for (int i = 0; i < 32; i++) begin
