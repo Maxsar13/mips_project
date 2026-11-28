@@ -1,10 +1,9 @@
 i<>.\src\mips_alu.sv
-i<>.\src\mips_alu_tb.sv
 i<>.\src\data_forward.sv
 i<>.\src\cpu_top.sv
+i<>.\src\regfile.sv
 i<>.\src\if_id_reg.sv
 i<>.\src\id_ex_reg.sv
 i<>.\src\ex_wb_reg.sv
 i<>.\src\instruction_buffer.sv
 i<>.\src\forward_muxes.sv
-i<>.\src\wb_stage.sv

@@ -7,7 +7,6 @@ module instruction_buffer(
 	
 	logic [5:0] pc_out;
 	logic [24:0] buffer [63:0];	
-	initial $readmemb("instructions.txt", buffer);
 	
 	always_ff @(posedge clk or posedge rst) begin
 		if(rst)

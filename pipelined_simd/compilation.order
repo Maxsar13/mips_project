@@ -2,8 +2,14 @@
 .\src\mips_alu_tb.sv
 .\src\data_forward.sv
 .\src\cpu_top.sv
+.\src\regfile.sv
 .\src\if_id_reg.sv
 .\src\id_ex_reg.sv
 .\src\ex_wb_reg.sv
 .\src\instruction_buffer.sv
 .\src\forward_muxes.sv
+.\tb\regfile_tb.sv
+.\tb\instruction_buffer_tb.sv
+.\tb\forwarding_tb.sv
+.\tb\pipeline_registers_tb.sv
+.\tb\cpu_top_tb.sv
