@@ -81,7 +81,19 @@ module cpu_top(
 		.if_id_instr_out(if_id_instr_out)
 		);
 	
-	//regfile instantiation
+	regfile regfile_inst(
+		.clk(clk),
+		.rst(rst),
+		.rs1(if_id_instr_out[9:5]),
+		.rs2(if_id_instr_out[14:10]),
+		.rs3(if_id_instr_out[19:15]),
+		.wb_en(ex_wb_write_en_out),
+		.wb_data(ex_wb_rd_out_out),
+		.wb_rd(ex_wb_wr_addr_out),
+		.rs1_data(rs1),
+		.rs2_data(rs2),
+		.rs3_data(rs3)
+		);
 	
 	id_ex_reg id_ex_reg_inst(
 		.clk(clk),
